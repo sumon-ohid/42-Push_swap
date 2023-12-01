@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/01 14:38:58 by msumon           ###   ########.fr       */
+/*   Created: 2023/11/30 09:40:13 by msumon            #+#    #+#             */
+/*   Updated: 2023/12/01 14:48:22 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/push_swap.h"
 
-# include "../libft/libft.h"
-# include "../libft/ft_printf/ft_printf.h"
-
-typedef struct s_stack
+void error_msg(char *msg)
 {
-    int				data;
-    struct s_stack	*next;
-}			   t_stack;
-
-void        error_msg(char *msg);
-int         check_arg(int argc, char **argv);
-t_stack	    *create_stack(int argc, char **argv);
-
-#endif
+    write(2, "Error!!\n", 8);
+    ft_putstr_fd(msg, 2);
+    exit(1);
+}
