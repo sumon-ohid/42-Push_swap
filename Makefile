@@ -6,7 +6,7 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 20:34:16 by sumon             #+#    #+#              #
-#    Updated: 2023/11/30 09:44:28 by msumon           ###   ########.fr        #
+#    Updated: 2023/12/04 17:19:55 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,17 @@ libft:
 
 $(NAME): libft $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT)libft.a -o $(NAME)
+	@printf "${GREEN}"
+	@echo "╔════════════════════════════════════════════════════╗"
+	@echo "║                     Welcome to                     ║"
+	@echo "║                  Push Swap Compiler                ║"
+	@echo "╚════════════════════════════════════════════════════╝"
+	@echo "${BLUE}Compiling: "
+	@for i in $$(seq 0 2 100); do \
+		sleep 0.1; \
+		printf "\033[1;33m#"; \
+	done
+	@printf " 100%%\n"
 	@echo ${GREEN}======== push_swap created! =========
 
 clean:
