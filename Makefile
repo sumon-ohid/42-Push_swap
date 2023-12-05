@@ -6,11 +6,11 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 20:34:16 by sumon             #+#    #+#              #
-#    Updated: 2023/12/05 09:27:15 by msumon           ###   ########.fr        #
+#    Updated: 2023/12/05 12:54:49 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= ./srcs/push_swap.c ./srcs/utils.c ./srcs/error_msg.c
+SRCS		= ./srcs/push_swap.c ./srcs/ps_utils.c ./srcs/error_msg.c
 CC			= cc
 RM			= rm -f
 NAME		= push_swap
@@ -47,7 +47,7 @@ $(NAME): libft $(OBJS)
 	@echo "╚════════════════════════════════════════════════════╝"
 	@echo "${BLUE}Compiling: "
 	@for i in $$(seq 0 2 100); do \
-		sleep 0.1; \
+		sleep 0.01; \
 		printf "\033[1;33m#"; \
 	done
 	@printf " 100%%\n"

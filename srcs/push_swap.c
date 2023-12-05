@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/05 09:20:29 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/05 12:56:07 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,18 @@ void	sa(t_stack *stack_a)
 {
 	int	temp;
 
-	temp = stack_a->next->data;
-	stack_a->next->data = stack_a->data;
-	stack_a->data = temp;
+	temp = stack_a->data;
+	stack_a->data = stack_a->next->data;
+	stack_a->next->data = temp;
+	ft_printf("sa\n");
 }
 
 void	sort_two(t_stack *stack_a)
 {
-	if (stack_a->data < stack_a->next->data)
-	{
-		ft_printf("sa\n");
+	if (stack_a->data > stack_a->next->data)
 		sa(stack_a);
-	}
 	else
-		error_msg("Already Sorted!!\n");
+		error_msg();
 }
 
 void	print_stack(t_stack *stack)
@@ -42,34 +40,30 @@ void	print_stack(t_stack *stack)
 	}
 }
 
+void	ft_operations(int argc, char **argv, t_stack *stack_a, t_stack *stack_b)
+{
+	if (check_arg(argc, argv) == 1)
+	{
+		stack_b = create_stack(argc, argv);
+		stack_a = create_stack(argc, argv);
+		sort_two(stack_a);
+	}
+	else
+		error_msg();
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	stack_a = NULL;
+	stack_b = NULL;
 	if (argc < 2)
-		return (0);
-	if (argc == 2)
-	{
-		if (check_arg(argc, argv) == 0)
-			error_msg("Only numbers are allowed\n");
-		else
-			error_msg("Mininum two numbers are required\n");
-	}
+		return (1);
 	else
 	{
-		if (check_arg(argc, argv) == 0)
-			error_msg("Only numbers are allowed\n");
-		if (argc < 5)
-		{
-			if (check_arg(argc, argv) == 0)
-				error_msg("Invalid Argument\n");
-			stack_a = create_stack(argc, argv);
-			sort_two(stack_a);
-			print_stack(stack_a);
-		}
-		else
-			error_msg("Too many arguments\n");
+		ft_operations(argc, argv, stack_a, stack_b);
 	}
 	return (0);
 }

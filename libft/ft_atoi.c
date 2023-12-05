@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msumon <msumon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 16:45:20 by msumon            #+#    #+#             */
-/*   Updated: 2023/09/14 17:19:50 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/05 10:20:17 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ int	ft_atoi(const char *nptr)
 	res = 0;
 	sign = 1;
 	while (ft_isspace(nptr[i]))
-		++i;
+		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
 		if (nptr[i] == '-')
 			sign = -1;
-		++i;
+		i++;
 	}
 	while ('0' <= nptr[i] && nptr[i] <= '9')
 	{
 		res = res * 10 + (nptr[i] - '0');
-		++i;
+		i++;
 	}
 	return (sign * res);
 }

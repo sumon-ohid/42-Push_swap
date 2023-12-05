@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/01 14:47:51 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/05 13:39:36 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_isrepeat(int num, int *arr, int size)
+int	ft_isrepeat(long num, int *arr, int size)
 {
 	int	i;
 
@@ -28,10 +28,14 @@ int	ft_isrepeat(int num, int *arr, int size)
 
 int	check_arg(int argc, char **argv)
 {
-	int	arr[argc - 1];
-	int	num;
+	int		*arr;
+	long	num;
+	int		i;
+	int		j;
 
-	int i, j;
+	arr = (int *)malloc(sizeof(int) * argc);
+	if (!arr)
+		error_msg();
 	i = 1;
 	while (i < argc)
 	{
@@ -43,15 +47,15 @@ int	check_arg(int argc, char **argv)
 				return (0);
 			j++;
 		}
-		num = ft_atoi(argv[i]);
+		num = ft_atol(argv[i]);
+		if (num > INT_MAX || num < INT_MIN)
+			return (0);
 		if (ft_isrepeat(num, arr, i - 1) == 0)
-		{
-			error_msg("Repeated numbers not allowed\n");
-			//return (0);
-		}
+			return (0);
 		arr[i - 1] = num;
 		i++;
 	}
+	free(arr);
 	return (1);
 }
 
@@ -67,7 +71,7 @@ t_stack	*create_stack(int argc, char **argv)
 	{
 		temp = (t_stack *)malloc(sizeof(t_stack));
 		if (temp == NULL)
-			error_msg("Malloc Failed\n");
+			error_msg();
 		temp->data = ft_atoi(argv[i]);
 		temp->next = stack;
 		stack = temp;
