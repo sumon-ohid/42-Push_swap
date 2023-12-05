@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/05 23:05:40 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/06 00:47:20 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,69 +39,64 @@ void	print_stack(t_stack *stack)
 
 void	ft_split_args(char **nbr_list, int argc)
 {
-	int *num;
-	int	i;
-	int	j;
+	int		*num;
+	int		i;
+	t_stack	*a;
 
 	i = 0;
-	j = 0;
 	num = (int *)malloc(sizeof(int) * argc);
 	if (num == NULL)
 		error_msg();
 	while (nbr_list[i])
 	{
-		num[j] = ft_atoi(nbr_list[i]);
-		printf("%d\n", num[j]);
-		j++;
+		num[i] = ft_atoi(nbr_list[i]);
 		i++;
+	}
+	a = create_stack(num, i);
+	while (a != NULL)
+	{
+		printf("%d\n", a->data);
+		a = a->next;
 	}
 }
 
-char	**get_args(int argc, char **argv)
+char	**get_args(char **argv)
 {
 	char	**nbr_list;
+	char	*temp;
+	char	*temp2;
 	int		i;
-	int		j;
 
-	j = 0;
 	i = 1;
-	nbr_list = (char **)malloc(sizeof(char *) * argc);
-	if (nbr_list == NULL)
-		error_msg();
+	temp = ft_strdup("");
 	while (argv[i])
 	{
-		nbr_list[j] = (char *)malloc(sizeof(char) * ft_strlen(argv[i]));
-		if (nbr_list[j] == NULL)
+		temp2 = ft_strjoin(temp, argv[i]);
+		if (temp2 == NULL)
 			error_msg();
-		nbr_list[j] = ft_strjoin(argv[i], " ");
+		free(temp);
+		temp = ft_strjoin(temp2, " ");
+		if (temp == NULL)
+			error_msg();
+		free(temp2);
 		i++;
-		j++;
 	}
+	nbr_list = ft_split(temp, ' ');
+	free(temp);
+	if (nbr_list == NULL)
+		error_msg();
 	return (nbr_list);
 }
 
 int	main(int argc, char **argv)
 {
 	char	**nbr_list;
-	int		i;
 
-	i = 0;
-	nbr_list = (char **)malloc(sizeof(char *) * argc);
-	if (nbr_list == NULL)
-		error_msg();
 	if (argc < 3)
 		return (1);
 	else
 	{
-		while (i < argc)
-		{
-			nbr_list[i] = (char *)malloc(sizeof(char) * ft_strlen(argv[i]));
-			if (nbr_list[i] == NULL)
-				error_msg();
-			nbr_list = get_args(argc, argv);
-			printf("%s", nbr_list[i]);
-			i++;
-		}
+		nbr_list = get_args(argv);
 		ft_split_args(nbr_list, argc);
 	}
 	return (0);

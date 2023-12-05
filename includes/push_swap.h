@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/05 20:32:19 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/06 00:18:15 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 typedef struct s_stack
 {
 	int				data;
-	int 			size;
+	int				size;
 	struct s_stack	*next;
 }					t_stack;
 
-int			error_msg(void);
-int			check_arg(int argc, char **argv);
-t_stack		*create_stack(int argc, char **argv, t_stack *stack);
-void		print_stack(t_stack *stack);
+int					error_msg(void);
+int					check_arg(int argc, char **argv);
+t_stack				*create_stack(int *num, int i);
+void				print_stack(t_stack *stack);
 
 #endif
