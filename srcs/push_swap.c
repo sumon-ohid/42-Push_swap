@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/01 14:47:37 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/05 09:20:29 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,20 @@ void	sa(t_stack *stack_a)
 {
 	int	temp;
 
-	temp = stack_a->data;
-	stack_a->data = stack_a->next->data;
-	stack_a->next->data = temp;
+	temp = stack_a->next->data;
+	stack_a->next->data = stack_a->data;
+	stack_a->data = temp;
 }
 
 void	sort_two(t_stack *stack_a)
 {
-	if (stack_a->next->data < stack_a->data)
+	if (stack_a->data < stack_a->next->data)
+	{
+		ft_printf("sa\n");
 		sa(stack_a);
+	}
+	else
+		error_msg("Already Sorted!!\n");
 }
 
 void	print_stack(t_stack *stack)

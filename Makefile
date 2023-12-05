@@ -6,7 +6,7 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 20:34:16 by sumon             #+#    #+#              #
-#    Updated: 2023/12/04 17:19:55 by msumon           ###   ########.fr        #
+#    Updated: 2023/12/05 09:27:15 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,21 +16,30 @@ RM			= rm -f
 NAME		= push_swap
 OBJS		= $(SRCS:.c=.o)
 LIBFT		= ./libft/
+FTPRINTF	= ./libft/ft_printf/
+GNL			= ./libft/get_next_line/
 CFLAGS		= -Wall -Werror -Wextra
 
 GREEN		= $(shell tput -Txterm setaf 2)
 BLUE		= $(shell tput -Txterm setaf 4)
+RED 		= $(shell tput -Txterm setaf 1)
 
-all: libft $(NAME)
+all: libft gnl ft_printf $(NAME)
 
 libft:
 	@$(MAKE) -C $(LIBFT) all
+
+ft_printf:
+	@$(MAKE) -C $(FTPRINTF) all
+
+gnl:
+	@$(MAKE) -C $(GNL) all
   
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): libft $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT)libft.a -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(FTPRINTF)libftprintf.a $(GNL)gnl.a $(LIBFT)libft.a -o $(NAME)
 	@printf "${GREEN}"
 	@echo "╔════════════════════════════════════════════════════╗"
 	@echo "║                     Welcome to                     ║"
@@ -45,16 +54,21 @@ $(NAME): libft $(OBJS)
 	@echo ${GREEN}======== push_swap created! =========
 
 clean:
+	@echo ${RED}
 	@$(RM) $(OBJS)
 	@$(MAKE) -C $(LIBFT) clean
+	@$(MAKE) -C $(GNL) clean
+	@$(MAKE) -C $(FTPRINTF) clean
+	@echo ${RED}======== Object files removed! ========
 
-fclean:
-	@$(RM) $(OBJS)
+fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) -C $(LIBFT) fclean
-	@echo ${BLUE}======== push_swap removed! ========
+	@$(MAKE) -C $(GNL) fclean
+	@$(MAKE) -C $(FTPRINTF) fclean
+	@echo ${RED}======== push_swap removed! ========
 
 re: fclean all
 
-.PHONY: all libft clean fclean re
+.PHONY: all libft ft_printf gnl clean fclean re
 .SILENT:
