@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/05 14:34:23 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/05 20:32:19 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_stack
 {
 	int				data;
+	int 			size;
 	struct s_stack	*next;
 }					t_stack;
 
