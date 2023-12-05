@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/05 13:39:36 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/05 14:36:39 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ int	check_arg(int argc, char **argv)
 	return (1);
 }
 
-t_stack	*create_stack(int argc, char **argv)
+t_stack	*create_stack(int argc, char **argv, t_stack *stack)
 {
-	t_stack	*stack;
 	t_stack	*temp;
 	int		i;
 
 	i = 1;
 	stack = NULL;
+	temp = NULL;
 	while (i < argc)
 	{
 		temp = (t_stack *)malloc(sizeof(t_stack));

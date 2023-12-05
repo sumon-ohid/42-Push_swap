@@ -6,7 +6,7 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 20:34:16 by sumon             #+#    #+#              #
-#    Updated: 2023/12/05 12:54:49 by msumon           ###   ########.fr        #
+#    Updated: 2023/12/05 13:50:43 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJS		= $(SRCS:.c=.o)
 LIBFT		= ./libft/
 FTPRINTF	= ./libft/ft_printf/
 GNL			= ./libft/get_next_line/
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -g -Wall -Werror -Wextra
 
 GREEN		= $(shell tput -Txterm setaf 2)
 BLUE		= $(shell tput -Txterm setaf 4)
