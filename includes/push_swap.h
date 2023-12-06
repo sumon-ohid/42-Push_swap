@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 21:41:16 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/06 23:05:49 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int					error_msg(void);
 int					check_arg(int argc, char **argv);
 t_stack				*create_stack(int *num, int i);
 void				print_stack(t_stack *stack);
+int					is_sorted(t_stack *a);
+void				sort_stack(t_stack **a, t_stack **b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 22:42:30 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 00:00:03 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	check_arg(int argc, char **argv)
     while (i < argc)
     {
         num = ft_atoi(argv[i]);
+        //does not handle overflow or underflow
         if (num > INT_MAX || num < INT_MIN || ft_isrepeat(num, arr, i - 1) == 0)
         {
             free(arr);
@@ -65,25 +66,66 @@ int	check_arg(int argc, char **argv)
 
 t_stack	*create_stack(int *num, int i)
 {
-	t_stack	*stack_a;
-	t_stack	*temp;
-	int		len;
+    t_stack	*stack_a;
+    t_stack	*temp;
+    t_stack	*last;
+    int		len;
 
-	len = i - 1;
-	stack_a = NULL;
-	temp = NULL;
-	while (len > 0)
+    len = 0;
+    stack_a = NULL;
+    last = NULL;
+    while (len < i)
+    {
+        temp = (t_stack *)malloc(sizeof(t_stack));
+        if (temp == NULL)
+            error_msg();
+        temp->data = num[len];
+        temp->next = NULL;
+        temp->prev = last;
+        if (last != NULL)
+            last->next = temp;
+        else
+            stack_a = temp;
+        last = temp;
+        len++;
+    }
+    return (stack_a);
+}
+
+int is_sorted(t_stack *a)
+{
+	int i;
+	int j;
+	int *arr;
+	t_stack *temp;
+
+	i = 0;
+	temp = a;
+	while (temp != NULL)
 	{
-		temp = (t_stack *)malloc(sizeof(t_stack));
-		if (temp == NULL)
-			error_msg();
-		temp->data = num[len];
-		temp->next = stack_a;
-		temp->prev = NULL;
-		if (stack_a != NULL)
-			stack_a->prev = temp;
-		stack_a = temp;
-		len--;
+		temp = temp->next;
+		i++;
 	}
-	return (stack_a);
+	arr = (int *)malloc(sizeof(int) * i);
+	if (arr == NULL)
+		error_msg();
+	j = 0;
+	while (a != NULL)
+	{
+		arr[j] = a->data;
+		a = a->next;
+		j++;
+	}
+	j = 0;
+	while (j < i - 1)
+	{
+		if (arr[j] > arr[j + 1])
+		{
+			free(arr);
+			return (0);
+		}
+		j++;
+	}
+	free(arr);
+	return (1);
 }

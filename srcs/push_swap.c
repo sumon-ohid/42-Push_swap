@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 22:41:17 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/06 23:56:32 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@ void	print_stack(t_stack *stack)
 		ft_putnbr_fd(stack->data, 1);
 		ft_putchar_fd('\n', 1);
 		stack = stack->next;
+	}
+}
+
+void print_char_list(char **nbr_list)
+{
+	int i;
+
+	i = 0;
+	while (nbr_list[i])
+	{
+		ft_putstr_fd(nbr_list[i], 1);
+		ft_putchar_fd('\n', 1);
+		i++;
 	}
 }
 
@@ -72,27 +85,40 @@ char	**get_args(char **argv)
 	return (nbr_list);
 }
 
-void ft_next_step(int argc, char **argv)
+void free_stack(t_stack *stack)
 {
-	char **nbr_list;
-	int i;
-	
-	i = argc - 1;
-	nbr_list = get_args(argv);
-	ft_split_args(nbr_list, i);
+	t_stack *temp;
+
+	while (stack != NULL)
+	{
+		temp = stack;
+		stack = stack->next;
+		free(temp);
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
+	t_stack	*b;
+	char **nbr_list;
 
-	a = ft_split_args(argv, argc);
+	b = NULL;
+	a = NULL;
 	if (argc < 2)
 		return (1);
 	else
 	{
-		ft_next_step(argc, argv);
+		nbr_list = get_args(argv);
+		a = ft_split_args(nbr_list, argc - 1);
+		if (a == NULL)
+			error_msg();
+		if (is_sorted(a) == 1)
+			return (1);
+		sort_stack(&a, &b);
 		print_stack(a);
+		free_stack(a);
+		free_stack(b);
 	}
 	return (0);
 }
