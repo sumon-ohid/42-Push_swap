@@ -6,38 +6,13 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 00:47:20 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/06 10:41:47 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	tiny_sort(t_stack *stack_a)
-{
-	int	temp;
-
-	if (stack_a->data > stack_a->next->data)
-	{
-		temp = stack_a->data;
-		stack_a->data = stack_a->next->data;
-		stack_a->next->data = temp;
-		ft_printf("sa\n");
-	}
-	else
-		error_msg();
-}
-
-void	print_stack(t_stack *stack)
-{
-	while (stack != NULL)
-	{
-		ft_putnbr_fd(stack->data, 1);
-		ft_putchar_fd('\n', 1);
-		stack = stack->next;
-	}
-}
-
-void	ft_split_args(char **nbr_list, int argc)
+t_stack	*args_to_stack(char **nbr_list, int argc)
 {
 	int		*num;
 	int		i;
@@ -58,9 +33,10 @@ void	ft_split_args(char **nbr_list, int argc)
 		printf("%d\n", a->data);
 		a = a->next;
 	}
+	return (a);
 }
 
-char	**get_args(char **argv)
+char	**get_args(int argc, char **argv)
 {
 	char	**nbr_list;
 	char	*temp;
@@ -69,7 +45,7 @@ char	**get_args(char **argv)
 
 	i = 1;
 	temp = ft_strdup("");
-	while (argv[i])
+	while (argv[i] && check_arg(argc, argv))
 	{
 		temp2 = ft_strjoin(temp, argv[i]);
 		if (temp2 == NULL)
@@ -96,8 +72,8 @@ int	main(int argc, char **argv)
 		return (1);
 	else
 	{
-		nbr_list = get_args(argv);
-		ft_split_args(nbr_list, argc);
+		nbr_list = get_args(argc, argv);
+		args_to_stack(nbr_list, argc);
 	}
 	return (0);
 }
