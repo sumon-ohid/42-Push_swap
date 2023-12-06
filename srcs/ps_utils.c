@@ -6,15 +6,15 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 15:07:47 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/06 15:13:37 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int ft_isrepeat(long num, int *arr, int size)
+int	ft_isrepeat(long num, int *arr, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)
@@ -42,7 +42,8 @@ int	check_arg(int argc, char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			if (!(('0' <= argv[i][j] && argv[i][j] <= '9') || (j == 0 && (argv[i][j] == '+' || argv[i][j] == '-'))))
+			if (!(('0' <= argv[i][j] && argv[i][j] <= '9') || (j == 0
+						&& (argv[i][j] == '+' || argv[i][j] == '-'))))
 			{
 				free(arr);
 				return (0);
@@ -62,15 +63,14 @@ int	check_arg(int argc, char **argv)
 	return (1);
 }
 
-t_stack *create_stack(int *num, int i)
+t_stack	*create_stack(int *num, int i)
 {
-	t_stack *stack_a;
-	t_stack *temp;
-	int len;
+	t_stack	*stack_a;
+	t_stack	*temp;
+	int		len;
 
 	len = i - 1;
 	stack_a = NULL;
-	temp = NULL;
 	while (len >= 0)
 	{
 		temp = (t_stack *)malloc(sizeof(t_stack));
@@ -78,6 +78,9 @@ t_stack *create_stack(int *num, int i)
 			error_msg();
 		temp->data = num[len];
 		temp->next = stack_a;
+		temp->prev = NULL;
+		if (stack_a != NULL)
+			stack_a->prev = temp;
 		stack_a = temp;
 		len--;
 	}
