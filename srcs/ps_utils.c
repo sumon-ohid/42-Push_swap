@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 15:13:37 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/06 16:26:35 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ t_stack	*create_stack(int *num, int i)
 		stack_a = temp;
 		len--;
 	}
+	free (temp);
 	return (stack_a);
 }
