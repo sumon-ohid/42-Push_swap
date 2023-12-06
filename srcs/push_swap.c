@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 10:41:47 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/06 15:09:01 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,7 @@ t_stack	*args_to_stack(char **nbr_list, int argc)
 		i++;
 	}
 	a = create_stack(num, i);
-	while (a != NULL)
-	{
-		printf("%d\n", a->data);
-		a = a->next;
-	}
+	free (num);
 	return (a);
 }
 
@@ -45,8 +41,10 @@ char	**get_args(int argc, char **argv)
 
 	i = 1;
 	temp = ft_strdup("");
-	while (argv[i] && check_arg(argc, argv))
+	while (argv[i])
 	{
+		if (!check_arg(argc, argv))
+			error_msg();
 		temp2 = ft_strjoin(temp, argv[i]);
 		if (temp2 == NULL)
 			error_msg();
@@ -67,13 +65,17 @@ char	**get_args(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	char	**nbr_list;
+	t_stack *a;
 
+	a = NULL;
 	if (argc < 3)
 		return (1);
 	else
 	{
 		nbr_list = get_args(argc, argv);
-		args_to_stack(nbr_list, argc);
+		a = args_to_stack(nbr_list, argc);
+		if (argc == 3)
+			sa(a);
 	}
 	return (0);
 }

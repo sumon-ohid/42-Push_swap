@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_sa.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 09:09:29 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 14:49:55 by msumon           ###   ########.fr       */
+/*   Created: 2023/12/06 14:28:36 by msumon            #+#    #+#             */
+/*   Updated: 2023/12/06 14:41:10 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/push_swap.h"
 
-int	ft_isdigit(int c)
+void sa(t_stack *a)
 {
-	return (c >= '0' && c <= '9');
+	int temp;
+
+	if (a->data > a->next->data)
+	{
+		temp = a->data;
+		a->data = a->next->data;
+		a->next->data = temp;
+		ft_printf("sa\n");
+	}
+    else
+        error_msg();
 }
