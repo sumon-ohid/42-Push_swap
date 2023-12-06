@@ -6,7 +6,11 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/12/06 16:26:35 by msumon           ###   ########.fr       */
+=======
+/*   Updated: 2023/12/05 14:36:39 by msumon           ###   ########.fr       */
+>>>>>>> parent of 3a554d0 (OK)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +67,26 @@ int	check_arg(int argc, char **argv)
 	return (1);
 }
 
-t_stack	*create_stack(int *num, int i)
+t_stack	*create_stack(int argc, char **argv, t_stack *stack)
 {
-	t_stack	*stack_a;
 	t_stack	*temp;
-	int		len;
+	int		i;
 
+<<<<<<< HEAD
 	len = i - 1;
 	stack_a = NULL;
 	while (len >= 0)
+=======
+	i = 1;
+	stack = NULL;
+	temp = NULL;
+	while (i < argc)
+>>>>>>> parent of 3a554d0 (OK)
 	{
 		temp = (t_stack *)malloc(sizeof(t_stack));
 		if (temp == NULL)
 			error_msg();
+<<<<<<< HEAD
 		temp->data = num[len];
 		temp->next = stack_a;
 		temp->prev = NULL;
@@ -86,4 +97,12 @@ t_stack	*create_stack(int *num, int i)
 	}
 	free (temp);
 	return (stack_a);
+=======
+		temp->data = ft_atoi(argv[i]);
+		temp->next = stack;
+		stack = temp;
+		i++;
+	}
+	return (stack);
+>>>>>>> parent of 3a554d0 (OK)
 }
