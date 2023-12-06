@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 22:27:56 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/06 22:42:30 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_stack	*create_stack(int *num, int i)
 	len = i - 1;
 	stack_a = NULL;
 	temp = NULL;
-	while (len >= 0)
+	while (len > 0)
 	{
 		temp = (t_stack *)malloc(sizeof(t_stack));
 		if (temp == NULL)

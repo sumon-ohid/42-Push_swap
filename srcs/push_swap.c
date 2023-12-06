@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 22:32:56 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/06 22:41:17 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_stack(t_stack *stack)
 	}
 }
 
-void	ft_split_args(char **nbr_list, int argc)
+t_stack	*ft_split_args(char **nbr_list, int argc)
 {
 	int		*num;
 	int		i;
@@ -41,6 +41,7 @@ void	ft_split_args(char **nbr_list, int argc)
 	}
 	a = create_stack(num, i);
 	free(num);
+	return (a);
 }
 
 char	**get_args(char **argv)
@@ -83,11 +84,15 @@ void ft_next_step(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
+	t_stack	*a;
+
+	a = ft_split_args(argv, argc);
 	if (argc < 2)
 		return (1);
 	else
 	{
 		ft_next_step(argc, argv);
+		print_stack(a);
 	}
 	return (0);
 }
