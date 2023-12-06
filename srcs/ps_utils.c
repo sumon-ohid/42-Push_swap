@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 00:00:03 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 00:22:39 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int	check_arg(int argc, char **argv)
         error_msg();
     while (i < argc)
     {
-        num = ft_atoi(argv[i]);
-        //does not handle overflow or underflow
+        num = ft_atol(argv[i]);
         if (num > INT_MAX || num < INT_MIN || ft_isrepeat(num, arr, i - 1) == 0)
         {
             free(arr);
