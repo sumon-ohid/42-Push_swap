@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 00:08:48 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 00:32:12 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	print_stack(t_stack *stack)
 	}
 }
 
-void print_char_list(char **nbr_list)
+void	print_char_list(char **nbr_list)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (nbr_list[i])
@@ -85,9 +85,9 @@ char	**get_args(char **argv)
 	return (nbr_list);
 }
 
-void free_stack(t_stack *stack)
+void	free_stack(t_stack *stack)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	while (stack != NULL)
 	{
@@ -101,7 +101,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	char **nbr_list;
+	char	**nbr_list;
 
 	b = NULL;
 	a = NULL;
