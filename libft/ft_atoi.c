@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 16:45:20 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/06 22:00:20 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 00:25:27 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	res = 0;
 	sign = 1;
-	while ((nptr[i] == ' ') || (nptr[i] == '\t') || (nptr[i] == '\n'))
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
 		i++;
 	while (nptr[i] == '-' || nptr[i] == '+')
 	{

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:06:09 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 00:21:44 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 00:25:00 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ long	ft_atol(char *str)
 	sign = 1;
 	i = 0;
 	res = 0;
-	while ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n'))
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
 	while (str[i] == '-' || str[i] == '+')
 	{
