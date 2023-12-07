@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 16:47:33 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 18:38:50 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,15 @@ char	*make_one_arg(char **argv)
 	return (one_arg);
 }
 
-int	digit_check(char *str)
+int	digit_sign_check(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] == '+' || str[i] == '-')
+			return (1);
 		if (!(str[i] >= '0' && str[i] <= '9') && str[i] != ' ')
 			return (0);
 		i++;
@@ -114,14 +116,11 @@ int	*arg_to_num(char *str)
 	return (arr);
 }
 
-void	sort_args(t_stack **a, t_stack **b, int argc)
+void	sort_args(t_stack **a, t_stack **b)
 {
-	if (argc == 3)
-		sa(a);
-	else
-	{
-		sort_stack(a, b);
-	}
+	sort_stack(a, b);
+	printf("\n");
+	print_stack(*a);
 	free_stack(*a);
 	free_stack(*b);
 }
@@ -140,11 +139,12 @@ int	main(int argc, char **argv)
 	else
 	{
 		arg_nbr = make_one_arg(argv);
-		if (digit_check(arg_nbr))
+		if (digit_sign_check(arg_nbr))
 		{
 			arr = arg_to_num(arg_nbr);
 			a = create_stack(arr);
 			print_stack(a);
+			sort_args(&a, &b);
 		}
 		else
 			error_msg();
