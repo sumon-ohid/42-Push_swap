@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 00:32:12 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 01:26:18 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ void	print_stack(t_stack *stack)
 	}
 }
 
-void	print_char_list(char **nbr_list)
-{
-	int	i;
+// void	print_char_list(char **nbr_list)
+// {
+// 	int	i;
 
-	i = 0;
-	while (nbr_list[i])
-	{
-		ft_putstr_fd(nbr_list[i], 1);
-		ft_putchar_fd('\n', 1);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (nbr_list[i])
+// 	{
+// 		ft_putstr_fd(nbr_list[i], 1);
+// 		ft_putchar_fd('\n', 1);
+// 		i++;
+// 	}
+// }
 
 t_stack	*ft_split_args(char **nbr_list, int argc)
 {
@@ -97,6 +97,19 @@ void	free_stack(t_stack *stack)
 	}
 }
 
+void	sort_args(t_stack **a, t_stack **b, int argc)
+{
+	if (argc == 3)
+		sa(a);
+	else
+	{
+		sort_stack(a, b);
+		print_stack(*a);
+	}
+	free_stack(*a);
+	free_stack(*b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -115,10 +128,7 @@ int	main(int argc, char **argv)
 			error_msg();
 		if (is_sorted(a) == 1)
 			return (1);
-		sort_stack(&a, &b);
-		print_stack(a);
-		free_stack(a);
-		free_stack(b);
+		sort_args(&a, &b, argc);
 	}
 	return (0);
 }
