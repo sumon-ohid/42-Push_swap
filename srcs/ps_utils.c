@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 08:57:45 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 16:46:18 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int	ft_isrepeat(long num, int *arr, int size)
 	int	i;
 
 	i = 0;
-	arr = (int *)malloc(sizeof(int) * size);
-	if (arr == NULL)
-		error_msg();
 	while (i < size)
 	{
 		if (arr[i] == num)
@@ -29,44 +26,26 @@ int	ft_isrepeat(long num, int *arr, int size)
 	return (1);
 }
 
-int	check_arg(int argc, char **argv)
+int num_validator(char **str, int *arr)
 {
-	int		i;
-	int		j;
-	long	num;
-	int		*arr;
+	long i;
+	long num;
 
+	num = 0;
 	i = 0;
-	arr = (int *)malloc(sizeof(int) * argc);
-	if (arr == NULL)
-		error_msg();
-	while (i < argc)
+	while (str[i])
 	{
-		num = ft_atol(argv[i]);
-		if (num > INT_MAX || num < INT_MIN || ft_isrepeat(num, arr, i) == 0)
-		{
-			free(arr);
+		num = ft_atol(str[i]);
+		if (num > INT_MAX || num < INT_MIN)
 			return (0);
-		}
-		arr[i] = num;
-		j = 0;
-		if (argv[i][j] == '-' || argv[i][j] == '+')
-			j++;
-		while (argv[i][j])
-		{
-			if (!ft_isdigit(argv[i][j++]))
-			{
-				free(arr);
-				return (0);
-			}
-		}
+		else if (ft_isrepeat(num, arr, i) == 0)
+			return (0);
 		i++;
 	}
-	free(arr);
 	return (1);
 }
 
-t_stack	*create_stack(int *num, int i)
+t_stack	*create_stack(int *num)
 {
 	t_stack	*stack_a;
 	t_stack	*temp;
@@ -76,7 +55,7 @@ t_stack	*create_stack(int *num, int i)
 	len = 0;
 	stack_a = NULL;
 	last = NULL;
-	while (len < i)
+	while (num[len])
 	{
 		temp = (t_stack *)malloc(sizeof(t_stack));
 		if (temp == NULL)

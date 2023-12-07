@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 08:53:27 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 16:46:38 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct s_stack
 
 // ****** utils ******
 void				error_msg(void);
-int					check_arg(int argc, char **argv);
-t_stack				*create_stack(int *num, int i);
+int 				num_validator(char **str, int *arr);
+t_stack				*create_stack(int *num);
 void				print_stack(t_stack *stack);
 int					is_sorted(t_stack *a);
 void				sort_stack(t_stack **a, t_stack **b);

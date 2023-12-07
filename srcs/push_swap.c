@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 08:50:13 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 16:47:33 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,54 +35,83 @@ void	print_stack(t_stack *stack)
 // 	}
 // }
 
-t_stack	*ft_split_args(char **nbr_list, int argc)
+int	argv_lenght(char **argv)
 {
-	int		*num;
-	int		i;
-	t_stack	*a;
+	int	i;
+	int	j;
+	int	len;
 
 	i = 0;
-	num = (int *)malloc(sizeof(int) * argc);
-	if (num == NULL)
-		error_msg();
-	if (check_arg(argc, nbr_list) == 0)
-		free_void(num);
-	while (nbr_list[i])
+	len = 0;
+	while (argv[i])
 	{
-		num[i] = ft_atoi(nbr_list[i]);
+		j = 0;
+		while (argv[i][j])
+			j++;
 		i++;
+		len = len + j;
 	}
-	a = create_stack(num, i);
-	if (a == NULL)
-		free_void(num);
-	free_char_list(nbr_list);
-	return (a);
+	return (len);
 }
 
-char	**get_args(char **argv)
+char	*make_one_arg(char **argv)
 {
-	char	**nbr_list;
-	char	*temp;
-	char	*temp2;
+	char	*one_arg;
 	int		i;
 
 	i = 1;
-	temp = ft_strdup("");
+	one_arg = (char *)malloc(sizeof(char) * argv_lenght(argv) + 1);
+	if (one_arg == NULL)
+		error_msg();
 	while (argv[i])
 	{
-		temp2 = ft_strjoin(temp, argv[i]);
-		if (temp2 == NULL)
-			free_void(temp);
-		temp = ft_strjoin(temp2, " ");
-		if (temp == NULL)
-			free_void(temp2);
+		one_arg = ft_strjoin(one_arg, argv[i]);
+		if (one_arg == NULL)
+			return (NULL);
+		one_arg = ft_strjoin(one_arg, " ");
+		if (one_arg == NULL)
+			return (NULL);
 		i++;
 	}
-	nbr_list = ft_split(temp, ' ');
-	free(temp);
+	return (one_arg);
+}
+
+int	digit_check(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9') && str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	*arg_to_num(char *str)
+{
+	char	**nbr_list;
+	int		*arr;
+	int		i;
+
+	i = 0;
+	arr = (int *)malloc(sizeof(int) * ft_strlen(str));
+	if (arr == NULL)
+		error_msg();
+	nbr_list = ft_split(str, ' ');
 	if (nbr_list == NULL)
-		free_char_list(nbr_list);
-	return (nbr_list);
+		error_msg();
+	while (nbr_list[i])
+	{
+		arr[i] = ft_atoi(nbr_list[i]);
+		i++;
+	}
+	if(num_validator(nbr_list, arr) == 0)
+		error_msg();
+	free(nbr_list);
+	return (arr);
 }
 
 void	sort_args(t_stack **a, t_stack **b, int argc)
@@ -97,12 +126,12 @@ void	sort_args(t_stack **a, t_stack **b, int argc)
 	free_stack(*b);
 }
 
-// ******** Still need to handle "54 52 53 51 50" case ********
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	char	**nbr_list;
+	int		*arr;
+	char	*arg_nbr;
 
 	b = NULL;
 	a = NULL;
@@ -110,13 +139,15 @@ int	main(int argc, char **argv)
 		return (1);
 	else
 	{
-		nbr_list = get_args(argv);
-		a = ft_split_args(nbr_list, argc - 1);
-		if (a == NULL)
+		arg_nbr = make_one_arg(argv);
+		if (digit_check(arg_nbr))
+		{
+			arr = arg_to_num(arg_nbr);
+			a = create_stack(arr);
+			print_stack(a);
+		}
+		else
 			error_msg();
-		if (is_sorted(a) == 1)
-			return (1);
-		sort_args(&a, &b, argc);
 	}
 	return (0);
 }
