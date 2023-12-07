@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 18:38:50 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 18:42:26 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int	*arg_to_num(char *str)
 
 void	sort_args(t_stack **a, t_stack **b)
 {
+	if (is_sorted(*a))
+		error_msg();
 	sort_stack(a, b);
 	printf("\n");
 	print_stack(*a);
@@ -143,7 +145,6 @@ int	main(int argc, char **argv)
 		{
 			arr = arg_to_num(arg_nbr);
 			a = create_stack(arr);
-			print_stack(a);
 			sort_args(&a, &b);
 		}
 		else
