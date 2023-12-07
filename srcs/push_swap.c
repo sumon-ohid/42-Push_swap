@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 18:42:26 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 18:49:54 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ int	digit_sign_check(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '+' || str[i] == '-')
+		if ((str[i] == '+' && ft_isdigit(str[i + 1])) || (str[i] == '-'
+			&& ft_isdigit(str[i + 1])))
 			return (1);
 		if (!(str[i] >= '0' && str[i] <= '9') && str[i] != ' ')
 			return (0);
@@ -110,7 +111,7 @@ int	*arg_to_num(char *str)
 		arr[i] = ft_atoi(nbr_list[i]);
 		i++;
 	}
-	if(num_validator(nbr_list, arr) == 0)
+	if (num_validator(nbr_list, arr) == 0)
 		error_msg();
 	free(nbr_list);
 	return (arr);
@@ -119,7 +120,7 @@ int	*arg_to_num(char *str)
 void	sort_args(t_stack **a, t_stack **b)
 {
 	if (is_sorted(*a))
-		error_msg();
+		return ;
 	sort_stack(a, b);
 	printf("\n");
 	print_stack(*a);

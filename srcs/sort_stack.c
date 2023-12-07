@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 11:50:15 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 18:43:47 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ void	sort_stack(t_stack **a, t_stack **b)
 {
 	int	min;
 
-	if (is_sorted(*a) == 1)
-		return;
 	while (*a)
 	{
 		min = find_min(*a);
