@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 19:21:25 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 22:39:20 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,61 @@ int	find_max(t_stack *stack)
 	}
 	return (max);
 }
-
-void	rotate_until_min(t_stack **stack, int min)
-{
-	while ((*stack)->data != min)
-		ra(stack);
-}
-
-void	sort_stack(t_stack **a, t_stack **b)
+void	sort_three(t_stack **a)
 {
 	int	min;
+	int	max;
 
-	while (*a)
+	min = find_min(*a);
+	max = find_max(*a);
+	if ((*a)->data != max && (*a)->next->data == min)
+		sa(a);
+	else if ((*a)->data != min && (*a)->next->data == max)
+		rra(a);
+	else if ((*a)->data == max && (*a)->next->data != min)
 	{
-		min = find_min(*a);
-		rotate_until_min(a, min);
-		pb(a, b);
+		sa(a);
+		rra(a);
 	}
-	while (*b)
-		pa(a, b);
+	else if ((*a)->data == min && (*a)->next->data == max)
+	{
+		sa(a);
+		ra(a);
+	}
+	else if ((*a)->data == max && (*a)->next->data == min)
+		ra(a);
+	else if ((*a)->data != max && (*a)->next->data != min)
+	{
+		sa(a);
+		ra(a);
+	}
+}
+
+void	quicksort(t_stack **stack_a, t_stack **stack_b)
+{
+	int min, max;
+	while (*stack_a && !is_sorted(*stack_a))
+	{
+		min = find_min(*stack_a);
+		max = find_max(*stack_a);
+		while (*stack_a && ((*stack_a)->data != min && (*stack_a)->data != max))
+		{
+			if ((*stack_a)->data > max)
+				pb(stack_a, stack_b);
+			else
+			{
+				ra(stack_a);
+				min = find_min(*stack_a);
+			}
+		}
+		if (*stack_a && (*stack_a)->data == min)
+		{
+			pb(stack_a, stack_b);
+			min = find_min(*stack_a);
+		}
+		else if (*stack_a && (*stack_a)->data == max)
+			ra(stack_a);
+	}
+	while (*stack_b)
+		pa(stack_a, stack_b);
 }
