@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 01:26:18 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 08:44:14 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,16 @@ t_stack	*ft_split_args(char **nbr_list, int argc)
 	if (num == NULL)
 		error_msg();
 	if (check_arg(argc, nbr_list) == 0)
-		error_msg();
+		free_num(num);
 	while (nbr_list[i])
 	{
 		num[i] = ft_atoi(nbr_list[i]);
 		i++;
 	}
 	a = create_stack(num, i);
-	free(num);
+	if (a == NULL)
+		free_num(num);
+	free_char_list(nbr_list);
 	return (a);
 }
 
@@ -70,31 +72,26 @@ char	**get_args(char **argv)
 	{
 		temp2 = ft_strjoin(temp, argv[i]);
 		if (temp2 == NULL)
+		{
+			free(temp2);
 			error_msg();
-		free(temp);
+		}
 		temp = ft_strjoin(temp2, " ");
 		if (temp == NULL)
+		{
+			free(temp);
 			error_msg();
-		free(temp2);
+		}
 		i++;
 	}
 	nbr_list = ft_split(temp, ' ');
 	free(temp);
 	if (nbr_list == NULL)
-		error_msg();
-	return (nbr_list);
-}
-
-void	free_stack(t_stack *stack)
-{
-	t_stack	*temp;
-
-	while (stack != NULL)
 	{
-		temp = stack;
-		stack = stack->next;
-		free(temp);
+		free(nbr_list);
+		error_msg();
 	}
+	return (nbr_list);
 }
 
 void	sort_args(t_stack **a, t_stack **b, int argc)
@@ -104,12 +101,13 @@ void	sort_args(t_stack **a, t_stack **b, int argc)
 	else
 	{
 		sort_stack(a, b);
-		print_stack(*a);
+		//print_stack(*a);
 	}
 	free_stack(*a);
 	free_stack(*b);
 }
 
+// ******** Still need to handle "54 52 53 51 50" case ********
 int	main(int argc, char **argv)
 {
 	t_stack	*a;

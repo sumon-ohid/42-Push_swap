@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 01:12:42 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 08:39:36 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_stack
 }					t_stack;
 
 // ****** utils ******
-int					error_msg(void);
+void				error_msg(void);
 int					check_arg(int argc, char **argv);
 t_stack				*create_stack(int *num, int i);
 void				print_stack(t_stack *stack);
@@ -50,5 +50,11 @@ void				rr(t_stack **a, t_stack **b);
 void				rra(t_stack **a);
 void				rrb(t_stack **b);
 void				rrr(t_stack **a, t_stack **b);
+
+// ****** multi_free ******
+void				free_stack(t_stack *stack);
+void				free_char_list(char **nbr_list);
+void				free_all(t_stack *a, t_stack *b, char **nbr_list);
+void    			free_num(int *num);
 
 #endif
