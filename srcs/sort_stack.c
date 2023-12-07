@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 22:39:20 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 22:42:35 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,14 @@ void	sort_three(t_stack **a)
 		sa(a);
 		rra(a);
 	}
-	else if ((*a)->data == min && (*a)->next->data == max)
-	{
-		sa(a);
-		ra(a);
-	}
+	else if (((*a)->data == min && (*a)->next->data == max)
+		|| ((*a)->data != max && (*a)->next->data != min))
+		{
+			sa(a);
+			ra(a);
+		}
 	else if ((*a)->data == max && (*a)->next->data == min)
 		ra(a);
-	else if ((*a)->data != max && (*a)->next->data != min)
-	{
-		sa(a);
-		ra(a);
-	}
 }
 
 void	quicksort(t_stack **stack_a, t_stack **stack_b)
