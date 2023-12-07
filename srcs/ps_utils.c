@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 08:29:10 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 08:57:45 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_isrepeat(long num, int *arr, int size)
 	i = 0;
 	arr = (int *)malloc(sizeof(int) * size);
 	if (arr == NULL)
-    	error_msg();
+		error_msg();
 	while (i < size)
 	{
 		if (arr[i] == num)

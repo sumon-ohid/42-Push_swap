@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 08:44:14 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 08:50:13 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_stack	*ft_split_args(char **nbr_list, int argc)
 	if (num == NULL)
 		error_msg();
 	if (check_arg(argc, nbr_list) == 0)
-		free_num(num);
+		free_void(num);
 	while (nbr_list[i])
 	{
 		num[i] = ft_atoi(nbr_list[i]);
@@ -54,7 +54,7 @@ t_stack	*ft_split_args(char **nbr_list, int argc)
 	}
 	a = create_stack(num, i);
 	if (a == NULL)
-		free_num(num);
+		free_void(num);
 	free_char_list(nbr_list);
 	return (a);
 }
@@ -72,25 +72,16 @@ char	**get_args(char **argv)
 	{
 		temp2 = ft_strjoin(temp, argv[i]);
 		if (temp2 == NULL)
-		{
-			free(temp2);
-			error_msg();
-		}
+			free_void(temp);
 		temp = ft_strjoin(temp2, " ");
 		if (temp == NULL)
-		{
-			free(temp);
-			error_msg();
-		}
+			free_void(temp2);
 		i++;
 	}
 	nbr_list = ft_split(temp, ' ');
 	free(temp);
 	if (nbr_list == NULL)
-	{
-		free(nbr_list);
-		error_msg();
-	}
+		free_char_list(nbr_list);
 	return (nbr_list);
 }
 
@@ -101,7 +92,6 @@ void	sort_args(t_stack **a, t_stack **b, int argc)
 	else
 	{
 		sort_stack(a, b);
-		//print_stack(*a);
 	}
 	free_stack(*a);
 	free_stack(*b);

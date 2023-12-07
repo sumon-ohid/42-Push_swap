@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 08:39:36 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 08:53:27 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void				print_stack(t_stack *stack);
 int					is_sorted(t_stack *a);
 void				sort_stack(t_stack **a, t_stack **b);
 void				sort_three(t_stack **a);
-void				sort_five(t_stack **a, t_stack **b);
 int					find_min(t_stack *stack);
 
 // ****** rules ******
@@ -55,6 +54,6 @@ void				rrr(t_stack **a, t_stack **b);
 void				free_stack(t_stack *stack);
 void				free_char_list(char **nbr_list);
 void				free_all(t_stack *a, t_stack *b, char **nbr_list);
-void    			free_num(int *num);
+void				free_void(void *ptr);
 
 #endif
