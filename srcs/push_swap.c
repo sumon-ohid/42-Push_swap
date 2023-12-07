@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 22:43:02 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 23:20:23 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,9 @@ void	sort_args(t_stack **a, t_stack **b, int *arr)
 		sort_three(a);
 	else
 	{
-		quicksort(a, b);
+		sort_stack(a, b);
 	}
-	//print_stack(*a);
+	print_stack(*a);
 	free_stack(*a);
 	free_stack(*b);
 }

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 21:39:59 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 23:20:04 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ int 				num_validator(char **str, int *arr);
 t_stack				*create_stack(int *num);
 void				print_stack(t_stack *stack);
 int					is_sorted(t_stack *a);
-void				sort_stack(t_stack **a, t_stack **b);
 void				sort_three(t_stack **a);
 int					find_min(t_stack *stack);
-void 				quicksort(t_stack **stack_a, t_stack **stack_b);
+void				sort_stack(t_stack **a, t_stack **b);
 int					arr_size_count(int *arr);
 
 // ****** rules ******
