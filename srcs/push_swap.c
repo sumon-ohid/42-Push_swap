@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 18:49:54 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 19:21:47 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,17 @@ void	print_stack(t_stack *stack)
 	}
 }
 
-// void	print_char_list(char **nbr_list)
-// {
-// 	int	i;
+int arr_size_count(int *arr)
+{
+	int i;
 
-// 	i = 0;
-// 	while (nbr_list[i])
-// 	{
-// 		ft_putstr_fd(nbr_list[i], 1);
-// 		ft_putchar_fd('\n', 1);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (arr[i])
+	{
+		i++;
+	}
+	return (i);
+}
 
 int	argv_lenght(char **argv)
 {
@@ -117,13 +116,21 @@ int	*arg_to_num(char *str)
 	return (arr);
 }
 
-void	sort_args(t_stack **a, t_stack **b)
+void	sort_args(t_stack **a, t_stack **b, int *arr)
 {
+	int size;
+
+	size = arr_size_count(arr);
 	if (is_sorted(*a))
 		return ;
-	sort_stack(a, b);
-	printf("\n");
-	print_stack(*a);
+	if (size == 2)
+		sa(a);
+	else if (size == 3)
+		sort_stack(a, b);
+	else
+	{
+		sort_stack(a, b);
+	}
 	free_stack(*a);
 	free_stack(*b);
 }
@@ -146,7 +153,7 @@ int	main(int argc, char **argv)
 		{
 			arr = arg_to_num(arg_nbr);
 			a = create_stack(arr);
-			sort_args(&a, &b);
+			sort_args(&a, &b, arr);
 		}
 		else
 			error_msg();
