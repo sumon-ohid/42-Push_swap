@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/08 21:22:33 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/08 21:41:05 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ void				print_stack(t_stack *stack);
 int					is_sorted(t_stack *a);
 void				sort_three(t_stack **a);
 int					find_min(t_stack *stack);
-void				sort_stack(t_stack **a, t_stack **b);
 int					arr_size_count(int *arr);
+
+// ****** sorts ******
 void 				sort_four(t_stack **a, t_stack **b, int size);
 void				sort_five(t_stack **a, t_stack **b, int size);
-
+void				sort_stack(t_stack **a, t_stack **b, int size);
 
 // ****** rules ******
 void				sa(t_stack **a);
