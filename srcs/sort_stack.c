@@ -6,13 +6,13 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 23:48:38 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/08 19:07:01 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	find_min(t_stack *stack)
+int find_min(t_stack *stack)
 {
 	int	min;
 
@@ -81,16 +81,35 @@ void	rotate_until_min(t_stack **stack, int min)
 		ra(stack);
 }
 
-void	sort_stack(t_stack **a, t_stack **b)
+int		stack_size(t_stack **stack)
+{
+	int	size;
+
+	size = 0;
+	while (*stack)
+	{
+		size++;
+		*stack = (*stack)->next;
+	}
+	return (size);
+}
+
+void sort_stack(t_stack **a, t_stack **b)
 {
 	int	min;
 
-	while (*a && !is_sorted(*a))
+	while (is_d_sorted(*a) == 0)
 	{
 		min = find_min(*a);
-		rotate_until_min(a, min);
-		pb(a, b);
+		if ((*a)->data == min)
+			pb(a, b);
+		else if ((*a)->next->data == min)
+			sa(a);
+		else if ((*a)->next->next->data == min)
+			rra(a);
+		else
+			rotate_until_min(a, min);
 	}
-	while (*b && !is_d_sorted(*b))
+	while (*b)
 		pa(a, b);
 }

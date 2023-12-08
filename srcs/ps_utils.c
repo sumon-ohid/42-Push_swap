@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/08 18:23:37 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/08 19:09:23 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_stack	*create_stack(int *num)
 int	is_sorted(t_stack *a)
 {
 	if (a == NULL)
-		return (0);
+		return (1);
 	while (a->next)
 	{
 		if (a->data > a->next->data)
