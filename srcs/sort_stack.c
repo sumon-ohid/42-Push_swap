@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/08 19:07:01 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/08 20:20:44 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ void	rotate_until_min(t_stack **stack, int min)
 		ra(stack);
 }
 
-int		stack_size(t_stack **stack)
+int		stack_size(t_stack **stack_1)
 {
 	int	size;
 
 	size = 0;
-	while (*stack)
+	while (*stack_1)
 	{
 		size++;
-		*stack = (*stack)->next;
+		*stack_1 = (*stack_1)->next;
 	}
 	return (size);
 }
@@ -110,6 +110,41 @@ void sort_stack(t_stack **a, t_stack **b)
 		else
 			rotate_until_min(a, min);
 	}
+	while (*b)
+		pa(a, b);
+}
+
+void sort_four_five(t_stack **a, t_stack **b, int size)
+{
+	int	min;
+
+	while (size > 3)
+	{
+		min = find_min(*a);
+		if ((*a)->data == min)
+			pb(a, b);
+		else if ((*a)->next->data == min)
+		{
+			sa(a);
+			pb(a, b);
+		}
+		else if ((*a)->next->next->data == min)
+		{
+			rra(a);
+			rra(a);
+			pb(a, b);
+		}
+		else if((*a)->next->next->next->data == min)
+		{
+			rra(a);
+			pb(a, b);
+		}
+		else
+			rotate_until_min(a, min);
+		size--;
+	}
+	if (size == 3 && is_sorted(*a) == 0)
+		sort_three(a);
 	while (*b)
 		pa(a, b);
 }
