@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 16:46:18 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 23:40:28 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,38 +75,11 @@ t_stack	*create_stack(int *num)
 
 int	is_sorted(t_stack *a)
 {
-	int		i;
-	int		j;
-	int		*arr;
-	t_stack	*temp;
-
-	i = 0;
-	temp = a;
-	while (temp != NULL)
+	while (a->next)
 	{
-		temp = temp->next;
-		i++;
-	}
-	arr = (int *)malloc(sizeof(int) * i);
-	if (arr == NULL)
-		error_msg();
-	j = 0;
-	while (a != NULL)
-	{
-		arr[j] = a->data;
-		a = a->next;
-		j++;
-	}
-	j = 0;
-	while (j < i - 1)
-	{
-		if (arr[j] > arr[j + 1])
-		{
-			free(arr);
+		if (a->data > a->next->data)
 			return (0);
-		}
-		j++;
+		a = a->next;
 	}
-	free(arr);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 23:19:23 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/07 23:48:38 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,24 @@ void	sort_three(t_stack **a)
 		sa(a);
 		rra(a);
 	}
-	else if (((*a)->data == min && (*a)->next->data == max)
-		|| ((*a)->data != max && (*a)->next->data != min))
-		{
-			sa(a);
-			ra(a);
-		}
 	else if ((*a)->data == max && (*a)->next->data == min)
 		ra(a);
+	else
+	{
+		sa(a);
+		ra(a);
+	}
+}
+
+int	is_d_sorted(t_stack *a)
+{
+	while (a->next)
+	{
+		if (a->data < a->next->data)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }
 
 void	rotate_until_min(t_stack **stack, int min)
@@ -75,12 +85,12 @@ void	sort_stack(t_stack **a, t_stack **b)
 {
 	int	min;
 
-	while (*a)
+	while (*a && !is_sorted(*a))
 	{
 		min = find_min(*a);
 		rotate_until_min(a, min);
 		pb(a, b);
 	}
-	while (*b)
+	while (*b && !is_d_sorted(*b))
 		pa(a, b);
 }
