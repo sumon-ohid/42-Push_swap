@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/08 20:24:53 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/08 21:36:45 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ void	sort_args(t_stack **a, t_stack **b, int *arr)
 		sort_three(a);
 	else if (size == 4)
 		sort_four(a, b, size);
+	else if (size == 5)
+		sort_five(a, b, size);
 	else
 	{
 		sort_stack(a, b);

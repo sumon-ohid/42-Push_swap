@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/08 20:23:54 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/08 21:37:13 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,12 +139,50 @@ void sort_four(t_stack **a, t_stack **b, int size)
 			rra(a);
 			pb(a, b);
 		}
-		else
-			rotate_until_min(a, min);
 		size--;
 	}
 	if (size == 3 && is_sorted(*a) == 0)
 		sort_three(a);
+	while (*b)
+		pa(a, b);
+}
+
+void	sort_five(t_stack **a, t_stack **b, int size)
+{
+	int	min;
+
+	while (size > 4)
+	{
+		min = find_min(*a);
+		if ((*a)->data == min)
+			pb(a, b);
+		else if ((*a)->next->data == min)
+		{
+			sa(a);
+			pb(a, b);
+		}
+		else if ((*a)->next->next->data == min)
+		{
+			rra(a);
+			rra(a);
+			rra(a);
+			pb(a, b);
+		}
+		else if((*a)->next->next->next->data == min)
+		{
+			rra(a);
+			rra(a);
+			pb(a, b);
+		}
+		else
+		{
+			rra(a);
+			pb(a, b);
+		}
+		size--;
+	}
+	if (size == 4 && is_sorted(*a) == 0)
+		sort_four(a, b, size);
 	while (*b)
 		pa(a, b);
 }
