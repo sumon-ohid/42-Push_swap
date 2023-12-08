@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/08 20:20:44 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/08 20:23:54 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void sort_stack(t_stack **a, t_stack **b)
 		pa(a, b);
 }
 
-void sort_four_five(t_stack **a, t_stack **b, int size)
+void sort_four(t_stack **a, t_stack **b, int size)
 {
 	int	min;
 
