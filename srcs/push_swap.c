@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 23:30:15 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/08 18:21:16 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ char	*make_one_arg(char **argv)
 	int		i;
 
 	i = 1;
+	if (argv[1] == NULL)
+		return (NULL);
 	one_arg = (char *)malloc(sizeof(char) * argv_lenght(argv) + 1);
 	if (one_arg == NULL)
 		error_msg();

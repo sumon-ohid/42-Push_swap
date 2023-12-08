@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 00:57:44 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 01:19:54 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/08 18:16:40 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ void	pa(t_stack **a, t_stack **b)
 	{
 		temp = *b;
 		*b = (*b)->next;
+		if (*b)
+			(*b)->prev = NULL;
 		temp->next = *a;
+		if (*a)
+			(*a)->prev = temp;
 		*a = temp;
 		write(1, "pa\n", 3);
 	}
@@ -54,6 +58,18 @@ void	pa(t_stack **a, t_stack **b)
 
 void	pb(t_stack **a, t_stack **b)
 {
-	pa(b, a);
-	write(1, "pb\n", 3);
+	t_stack	*temp;
+
+	if (*a)
+	{
+		temp = *a;
+		*a = (*a)->next;
+		if (*a)
+			(*a)->prev = NULL;
+		temp->next = *b;
+		if (*b)
+			(*b)->prev = temp;
+		*b = temp;
+		write(1, "pb\n", 3);
+	}
 }

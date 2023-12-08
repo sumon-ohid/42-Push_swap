@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:39:30 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/07 01:04:25 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/08 18:17:10 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ void	ra(t_stack **a)
 	{
 		temp = *a;
 		*a = (*a)->next;
+		(*a)->prev = NULL;
 		last = *a;
 		while (last->next)
 			last = last->next;
 		last->next = temp;
+		temp->prev = last;
 		temp->next = NULL;
 		write(1, "ra\n", 3);
 	}
