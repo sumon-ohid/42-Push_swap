@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/08 22:07:29 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/09 17:46:46 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,14 +139,13 @@ void	sort_five(t_stack **a, t_stack **b, int size)
 			pb(a, b);
 		else if ((*a)->next->data == min)
 		{
-			sa(a);
+			ra(a);
 			pb(a, b);
 		}
 		else if ((*a)->next->next->data == min)
 		{
-			rra(a);
-			rra(a);
-			rra(a);
+			ra(a);
+			ra(a);
 			pb(a, b);
 		}
 		else if((*a)->next->next->next->data == min)
