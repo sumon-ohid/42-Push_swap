@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 00:54:40 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/08 18:17:47 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/10 22:08:50 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 void	rra(t_stack **a)
 {
-	t_stack	*temp;
 	t_stack	*last;
+	t_stack	*temp;
 
-	if (*a && (*a)->next)
-	{
-		last = *a;
-		while (last->next)
-			last = last->next;
-		temp = last->prev;
-		temp->next = NULL;
-		last->prev = NULL;
-		last->next = *a;
-		(*a)->prev = last;
-		*a = last;
-		write(1, "rra\n", 4);
-	}
+	if (*a == NULL || (*a)->next == NULL)
+		return ;
+	last = *a;
+	while (last->next->next)
+		last = last->next;
+	temp = last->next;
+	last->next = NULL;
+	temp->next = *a;
+	*a = temp;
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_stack **b)

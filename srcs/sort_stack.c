@@ -6,198 +6,159 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/09 20:36:29 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/10 22:21:14 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int find_min(t_stack *stack_min)
+int	rra_until_min(t_stack **stack, int num)
 {
-	int	min;
+	int	cost;
 
-	min = stack_min->data;
-	while (stack_min)
+	cost = 0;
+	while ((*stack)->data != num)
 	{
-		if (stack_min->data < min)
-			min = stack_min->data;
-		stack_min = stack_min->next;
+		rra(stack);
+		cost++;
 	}
-	return (min);
-
+	return (cost);
 }
 
-int	find_max(t_stack *stack_max)
+t_stack *copy_stack(t_stack *stack)
 {
-	int	max;
+	t_stack *copy;
+	t_stack *temp;
 
-	max = stack_max->data;
-	while (stack_max)
+	copy = NULL;
+	while (stack)
 	{
-		if (stack_max->data > max)
-			max = stack_max->data;
-		stack_max = stack_max->next;
+		temp = (t_stack *)malloc(sizeof(t_stack));
+		if (temp == NULL)
+			error_msg();
+		temp->data = stack->data;
+		temp->next = NULL;
+		if (copy == NULL)
+			copy = temp;
+		else
+		{
+			temp->next = copy;
+			copy = temp;
+		}
+		stack = stack->next;
 	}
-	return (max);
+	return (copy);
 }
-void	sort_three(t_stack **a)
+
+int get_min_position(t_stack *arr, int min)
 {
-	int	min;
-	int	max;
+	int position;
+
+	position = 0;
+	while (arr)
+	{
+		if (arr->data == min)
+			return (position);
+		position++;
+		arr = arr->next;
+	}
+	return (position);
+}
+
+void sort_stack(t_stack **a, t_stack **b, int *arr)
+{
+	int position;
+	int min;
+    int size;
+	t_stack *last;
+	(void)arr;
 
 	min = find_min(*a);
-	max = find_max(*a);
-	if ((*a)->data != max && (*a)->next->data == min)
-		sa(a);
-	else if ((*a)->data != min && (*a)->next->data == max)
-		rra(a);
-	else if ((*a)->data == max && (*a)->next->data != min)
-	{
-		sa(a);
-		rra(a);
-	}
-	else if ((*a)->data == max && (*a)->next->data == min)
-		ra(a);
-	else
-	{
-		sa(a);
-		ra(a);
-	}
+	position = get_min_position(*a, min);
+    last = get_last_element(*a);
+    size = get_stack_size(a);
+    while (size > 2)
+    {
+		last = get_last_element(*a);
+        min = find_min(*a);
+		position = get_min_position(*a, min);
+        if (last->data == min)
+        {
+            rra(a);
+            pb(a, b);
+        }
+		else if (position < size / 2)
+        {
+            rotate_until_min(a, min);
+            pb(a, b);
+        }
+		else
+		{
+			rra_until_min(a, min);
+			pb(a, b);
+		}
+        size--;
+    }
+    if (size == 2 && is_sorted(*a) == 0)
+        sort_three(a);
+    while (*b)
+        pa(a, b);
+	print_stack(a);
 }
 
-int	is_d_sorted(t_stack *a)
+int	*ft_sort_int_tab(int *tab, int size)
 {
-	while (a->next)
+	int	i;
+	int	j;
+	int	temp;
+
+	i = 0;
+	while (i < size)
 	{
-		if (a->data < a->next->data)
-			return (0);
-		a = a->next;
+		j = 0;
+		while (j < size - 1)
+		{
+			if (tab[j] > tab[j + 1])
+			{
+				temp = tab[j + 1];
+				tab[j + 1] = tab[j];
+				tab[j] = temp;
+			}
+			j++;
+		}
+		i++;
 	}
-	return (1);
+	return (tab);
 }
 
-void	rotate_until_min(t_stack **stack, int min)
+void	rotate_until_mid(t_stack **stack, int mid_num)
 {
-	while ((*stack)->data != min)
+	while ((*stack)->data != mid_num)
 		ra(stack);
 }
 
-int		stack_size(t_stack **stack_1)
-{
-	int	size;
-
-	size = 0;
-	while (*stack_1)
-	{
-		size++;
-		*stack_1 = (*stack_1)->next;
-	}
-	return (size);
-}
-
-
-void sort_four(t_stack **a, t_stack **b, int size)
-{
-	int	min;
-
-	while (size > 3)
-	{
-		min = find_min(*a);
-		if ((*a)->data == min)
-			pb(a, b);
-		else if ((*a)->next->data == min)
-		{
-			sa(a);
-			pb(a, b);
-		}
-		else if ((*a)->next->next->data == min)
-		{
-			rra(a);
-			rra(a);
-			pb(a, b);
-		}
-		else if((*a)->next->next->next->data == min)
-		{
-			rra(a);
-			pb(a, b);
-		}
-		size--;
-	}
-	if (size == 3 && is_sorted(*a) == 0)
-		sort_three(a);
-	while (*b)
-		pa(a, b);
-}
-
-void	sort_five(t_stack **a, t_stack **b, int size)
-{
-	int	min;
-
-	while (size > 4)
-	{
-		min = find_min(*a);
-		if ((*a)->data == min)
-			pb(a, b);
-		else if ((*a)->next->data == min)
-		{
-			ra(a);
-			pb(a, b);
-		}
-		else if ((*a)->next->next->data == min)
-		{
-			ra(a);
-			ra(a);
-			pb(a, b);
-		}
-		else if((*a)->next->next->next->data == min)
-		{
-			rra(a);
-			rra(a);
-			pb(a, b);
-		}
-		else
-		{
-			rra(a);
-			pb(a, b);
-		}
-		size--;
-	}
-	if (size == 4 && is_sorted(*a) == 0)
-		sort_four(a, b, size);
-	while (*b)
-		pa(a, b);
-}
-
-t_stack *get_last_element(t_stack *stack_last)
-{
-	while (stack_last->next)
-		stack_last = stack_last->next;
-	return (stack_last);
-}
-
-void sort_stack(t_stack **a, t_stack **b, int size)
-{
-	int	min;
-	t_stack *last;
-
-	while ((*a) && size > 5 && is_sorted(*a) == 0)
-	{
-		last = get_last_element(*a);
-		min = find_min(*a);
-		if (last->data == min)
-		{
-			rra(a);
-			pb(a, b);
-		}
-		else
-		{
-			rotate_until_min(a, min);
-			pb(a, b);
-		}
-		size--;
-	}
-	if (size == 5 && is_sorted(*a) == 0)
-		sort_five(a, b, size);
-	while (*b)
-		pa(a, b);
-}
+// void	sort_stack(t_stack **stack_a, t_stack **stack_b, int *arr)
+// {
+//     int *sorted_arr;
+//     int mid_num;
+//     int stack_size;
+// 	int value;
+	
+// 	value = 0;
+//     stack_size = get_stack_size(stack_a);
+//     sorted_arr = ft_sort_int_tab(arr, arr_size_count(arr));
+//     mid_num = sorted_arr[arr_size_count(arr) / 2];
+//     while (stack_size > 0)
+//     {
+//         while ((*stack_a))
+// 		{
+// 			if ((*stack_a)->data < mid_num)
+// 			{
+// 				value = (*stack_a)->data;
+// 				rotate_until_mid(stack_a, mid_num);
+// 				pb(stack_a, stack_b);
+// 			}
+// 		}
+//         stack_size = get_stack_size(stack_a);
+//     }
+// }

@@ -6,19 +6,21 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/09 20:25:51 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/10 20:25:55 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	print_stack(t_stack *stack)
+void	print_stack(t_stack **stack)
 {
-	while (stack != NULL)
+	t_stack	*temp;
+
+	temp = *stack;
+	while (temp)
 	{
-		ft_putnbr_fd(stack->data, 1);
-		ft_putchar_fd('\n', 1);
-		stack = stack->next;
+		printf("%d\n", temp->data);
+		temp = temp->next;
 	}
 }
 
@@ -135,9 +137,8 @@ void	sort_args(t_stack **a, t_stack **b, int *arr)
 		sort_five(a, b, size);
 	else
 	{
-		sort_stack(a, b, size);
+		sort_stack(a, b, arr);
 	}
-	//print_stack(*a);
 	free_stack(*a);
 	free_stack(*b);
 }

@@ -6,12 +6,13 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 20:34:16 by sumon             #+#    #+#              #
-#    Updated: 2023/12/07 08:33:51 by msumon           ###   ########.fr        #
+#    Updated: 2023/12/10 18:25:51 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= ./srcs/push_swap.c ./srcs/ps_utils.c ./srcs/multi_free.c ./srcs/ft_rules.c \
-				./srcs/ft_rules1.c ./srcs/ft_rules2.c ./srcs/sort_stack.c
+				./srcs/ft_rules1.c ./srcs/ft_rules2.c ./srcs/sort_stack.c ./srcs/sort_small.c \
+				./srcs/sorting_utils.c
 CC			= cc
 RM			= rm -f
 NAME		= push_swap
