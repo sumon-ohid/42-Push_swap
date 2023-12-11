@@ -3,7 +3,7 @@
 ## Introduction
 Push Swap is a project that involves sorting a stack of integers using two stacks and a specific set of instructions. The goal is to implement an algorithm that efficiently sorts the stack with the minimum possible number of moves. This project is part of the 42 school curriculum and is designed to test algorithmic and problem-solving skills.
 
-You can use the checker program to verify if the output instructions correctly sort the stack:
+*** You can use the checker program to verify if the output instructions correctly sort the stack: ***
 
 ## For MAC
 ```bash
