@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 16:13:17 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 17:34:13 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*make_one_arg(char **argv)
 	i = 1;
 	if (argv[1] == NULL)
 		return (NULL);
-	one_arg = (char *)malloc(sizeof(char) * argv_lenght(argv) + 1);
+	one_arg = (char *)ft_calloc(sizeof(char), argv_lenght(argv) + 1);
 	if (one_arg == NULL)
 		error_msg();
 	while (argv[i])
@@ -75,9 +75,11 @@ t_stack	*arg_to_num(char *str)
 		i++;
 	}
 	if (num_validator(nbr_list, arr) == 0)
-		error_msg();
-	free(nbr_list);
+		free_all(str, arr, nbr_list);
 	a = create_stack(arr, i, 0);
+	free(str);
+	free(arr);
+	free_char_list(nbr_list);
 	return (a);
 }
 
@@ -87,7 +89,10 @@ void	sort_args(t_stack **a, t_stack **b)
 
 	size = get_stack_size(a);
 	if (is_sorted(*a))
+	{
+		free_stack(*a);
 		return ;
+	}
 	if (size == 2)
 		sa(a);
 	else if (size == 3)
@@ -118,11 +123,13 @@ int	main(int argc, char **argv)
 		if (digit_sign_check(arg_nbr))
 		{
 			a = arg_to_num(arg_nbr);
-			free(arg_nbr);
 			sort_args(&a, &b);
 		}
 		else
+		{
+			free(arg_nbr);
 			error_msg();
+		}
 	}
 	return (0);
 }
