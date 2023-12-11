@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/10 21:29:26 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 15:55:57 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 typedef struct s_stack
 {
 	int				data;
-	int				index;
-	int				cost;
+	int				rank;	
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }					t_stack;
@@ -31,7 +30,7 @@ typedef struct s_stack
 // ****** utils ******
 void				error_msg(void);
 int 				num_validator(char **str, int *arr);
-t_stack				*create_stack(int *num);
+t_stack				*create_stack(int *num, int i);
 void				print_stack(t_stack **stack);
 int					is_sorted(t_stack *a);
 int					find_min(t_stack *stack);
@@ -46,7 +45,7 @@ t_stack				*get_last_element(t_stack *stack_last);
 void				sort_three(t_stack **a);
 void 				sort_four(t_stack **a, t_stack **b, int size);
 void				sort_five(t_stack **a, t_stack **b, int size);
-void				sort_stack(t_stack **a, t_stack **b, int *arr);
+void				sort_stack(t_stack **a, t_stack **b);
 
 // ****** rules ******
 void				sa(t_stack **a);

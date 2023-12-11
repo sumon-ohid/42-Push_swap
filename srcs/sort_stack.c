@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 14:07:52 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 15:58:40 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	rra_until_min(t_stack **stack, int num)
 	return (cost);
 }
 
-int get_min_position(t_stack *arr, int min)
+int	get_min_position(t_stack *arr, int min)
 {
-	int position;
+	int	position;
 
 	position = 0;
 	while (arr)
@@ -40,42 +40,62 @@ int get_min_position(t_stack *arr, int min)
 	return (position);
 }
 
-void sort_stack(t_stack **a, t_stack **b, int *arr)
+void	initiate_rank(t_stack **a)
 {
-	int position;
-	int min;
-    int size;
-	t_stack *last;
-	(void)arr;
+	int		rank;
+	int		size;
+	int		min;
+	int		i;
+	t_stack	*min_node;
+	t_stack	*current;
 
-	min = find_min(*a);
-	position = get_min_position(*a, min);
-    last = get_last_element(*a);
-    size = get_stack_size(a);
-    while (size > 2)
-    {
-		last = get_last_element(*a);
-        min = find_min(*a);
-		position = get_min_position(*a, min);
-        if (last->data == min)
-        {
-            rra(a);
-            pb(a, b);
-        }
-		else if (position < size / 2)
-        {
-            rotate_until_min(a, min);
-            pb(a, b);
-        }
-		else
+	i = 0;
+	if (!*a)
+		return ;
+	rank = 1;
+	size = get_stack_size(a);
+	while (i < size)
+	{
+		min = INT_MAX;
+		min_node = NULL;
+		current = *a;
+		while (current)
 		{
-			rra_until_min(a, min);
-			pb(a, b);
+			if (!current->rank && current->data < min)
+			{
+				min = current->data;
+				min_node = current;
+			}
+			current = current->next;
 		}
-        size--;
-    }
-    if (size == 2 && is_sorted(*a) == 0)
-        sort_three(a);
-    while (*b)
-        pa(a, b);
+		if (min_node)
+			min_node->rank = rank++;
+		i++;
+	}
+}
+
+void	sort_stack(t_stack **a, t_stack **b)
+{
+	t_stack	*proxy;
+	int		counter;
+	int		twos;
+
+	initiate_rank(a);
+	twos = 1;
+	while (is_sorted(*a) == 0)
+	{
+		counter = get_stack_size(a);
+		while (counter)
+		{
+			proxy = *a;
+			if (!(proxy->rank & twos))
+				pb(a, b);
+			else
+				ra(a);
+			counter--;
+		}
+		while (*b)
+			pa(a, b);
+		twos = twos * 2;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/10 20:12:30 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 15:53:19 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int num_validator(char **str, int *arr)
 	return (1);
 }
 
-t_stack	*create_stack(int *num)
+t_stack	*create_stack(int *num, int i)
 {
 	t_stack	*stack_a;
 	t_stack	*temp;
@@ -55,12 +55,13 @@ t_stack	*create_stack(int *num)
 	len = 0;
 	stack_a = NULL;
 	last = NULL;
-	while (num[len])
+	while (i)
 	{
 		temp = (t_stack *)malloc(sizeof(t_stack));
 		if (temp == NULL)
 			error_msg();
 		temp->data = num[len];
+		temp->rank = 0;
 		temp->next = NULL;
 		temp->prev = last;
 		if (last != NULL)
@@ -69,6 +70,7 @@ t_stack	*create_stack(int *num)
 			stack_a = temp;
 		last = temp;
 		len++;
+		i--;
 	}
 	return (stack_a);
 }
