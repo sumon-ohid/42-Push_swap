@@ -6,13 +6,13 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:20:50 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/10 21:29:02 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 16:02:28 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack *get_last_element(t_stack *stack_last)
+t_stack	*get_last_element(t_stack *stack_last)
 {
 	while (stack_last->next)
 		stack_last = stack_last->next;
@@ -24,8 +24,8 @@ int	rotate_until_min(t_stack **stack, int num)
 	int	cost;
 
 	cost = 0;
-    while ((*stack)->data != num)
-    {
+	while ((*stack)->data != num)
+	{
 		ra(stack);
 		cost++;
 	}
@@ -57,9 +57,9 @@ void	sort_three(t_stack **a)
 	}
 }
 
-void sort_four(t_stack **a, t_stack **b, int size)
+void	sort_four(t_stack **a, t_stack **b, int size)
 {
-	int	min;
+	int		min;
 	t_stack	*last;
 
 	last = get_last_element(*a);
@@ -86,7 +86,7 @@ void sort_four(t_stack **a, t_stack **b, int size)
 
 void	sort_five(t_stack **a, t_stack **b, int size)
 {
-	int	min;
+	int		min;
 	t_stack	*last;
 
 	last = get_last_element(*a);

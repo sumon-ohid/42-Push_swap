@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 15:55:57 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 16:13:47 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,29 @@
 typedef struct s_stack
 {
 	int				data;
-	int				rank;	
+	int				rank;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }					t_stack;
 
 // ****** utils ******
 void				error_msg(void);
-int 				num_validator(char **str, int *arr);
-t_stack				*create_stack(int *num, int i);
+int					num_validator(char **str, int *arr);
+t_stack				*create_stack(int *num, int i, int len);
 void				print_stack(t_stack **stack);
 int					is_sorted(t_stack *a);
 int					find_min(t_stack *stack);
 int					find_max(t_stack *stack);
 int					rotate_until_min(t_stack **stack, int num);
 int					rra_until_min(t_stack **a, int min);
+int					argv_lenght(char **argv);
 int					arr_size_count(int *arr);
 int					get_stack_size(t_stack **stack_1);
 t_stack				*get_last_element(t_stack *stack_last);
 
 // ****** sorts ******
 void				sort_three(t_stack **a);
-void 				sort_four(t_stack **a, t_stack **b, int size);
+void				sort_four(t_stack **a, t_stack **b, int size);
 void				sort_five(t_stack **a, t_stack **b, int size);
 void				sort_stack(t_stack **a, t_stack **b);
 

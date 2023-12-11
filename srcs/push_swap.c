@@ -6,54 +6,11 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 15:55:44 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 16:13:17 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	print_stack(t_stack **stack)
-{
-	t_stack	*temp;
-
-	temp = *stack;
-	while (temp)
-	{
-		printf("%d\n", temp->data);
-		temp = temp->next;
-	}
-}
-
-int arr_size_count(int *arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-	{
-		i++;
-	}
-	return (i);
-}
-
-int	argv_lenght(char **argv)
-{
-	int	i;
-	int	j;
-	int	len;
-
-	i = 0;
-	len = 0;
-	while (argv[i])
-	{
-		j = 0;
-		while (argv[i][j])
-			j++;
-		i++;
-		len = len + j;
-	}
-	return (len);
-}
 
 char	*make_one_arg(char **argv)
 {
@@ -89,7 +46,7 @@ int	digit_sign_check(char *str)
 	while (str[i])
 	{
 		if ((str[i] == '+' && ft_isdigit(str[i + 1])) || (str[i] == '-'
-			&& ft_isdigit(str[i + 1])))
+				&& ft_isdigit(str[i + 1])))
 			return (1);
 		if (!(str[i] >= '0' && str[i] <= '9') && str[i] != ' ')
 			return (0);
@@ -103,7 +60,7 @@ t_stack	*arg_to_num(char *str)
 	char	**nbr_list;
 	int		*arr;
 	int		i;
-	t_stack *a;
+	t_stack	*a;
 
 	i = 0;
 	arr = (int *)malloc(sizeof(int) * ft_strlen(str));
@@ -120,13 +77,13 @@ t_stack	*arg_to_num(char *str)
 	if (num_validator(nbr_list, arr) == 0)
 		error_msg();
 	free(nbr_list);
-	a = create_stack(arr, i);
+	a = create_stack(arr, i, 0);
 	return (a);
 }
 
 void	sort_args(t_stack **a, t_stack **b)
 {
-	int size;
+	int	size;
 
 	size = get_stack_size(a);
 	if (is_sorted(*a))
@@ -140,10 +97,7 @@ void	sort_args(t_stack **a, t_stack **b)
 	else if (size == 5)
 		sort_five(a, b, size);
 	else
-	{
 		sort_stack(a, b);
-	}
-	//print_stack(a);
 	free_stack(*a);
 	free_stack(*b);
 }

@@ -6,11 +6,42 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 15:53:19 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 16:12:38 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	arr_size_count(int *arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
+int	argv_lenght(char **argv)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+			j++;
+		i++;
+		len = len + j;
+	}
+	return (len);
+}
 
 int	ft_isrepeat(long num, int *arr, int size)
 {
@@ -26,10 +57,10 @@ int	ft_isrepeat(long num, int *arr, int size)
 	return (1);
 }
 
-int num_validator(char **str, int *arr)
+int	num_validator(char **str, int *arr)
 {
-	long i;
-	long num;
+	long	i;
+	long	num;
 
 	num = 0;
 	i = 0;
@@ -45,14 +76,12 @@ int num_validator(char **str, int *arr)
 	return (1);
 }
 
-t_stack	*create_stack(int *num, int i)
+t_stack	*create_stack(int *num, int i, int len)
 {
 	t_stack	*stack_a;
 	t_stack	*temp;
 	t_stack	*last;
-	int		len;
 
-	len = 0;
 	stack_a = NULL;
 	last = NULL;
 	while (i)
@@ -74,4 +103,3 @@ t_stack	*create_stack(int *num, int i)
 	}
 	return (stack_a);
 }
-
