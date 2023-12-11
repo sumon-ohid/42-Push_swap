@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/10 22:21:14 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 13:34:34 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void sort_stack(t_stack **a, t_stack **b, int *arr)
         sort_three(a);
     while (*b)
         pa(a, b);
-	print_stack(a);
 }
 
 int	*ft_sort_int_tab(int *tab, int size)

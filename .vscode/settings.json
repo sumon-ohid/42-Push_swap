@@ -3,6 +3,7 @@
         "limits": "c",
         "ratio": "c",
         "algorithm": "c",
-        "variant": "c"
+        "variant": "c",
+        "push_swap.h": "c"
     }
 }
