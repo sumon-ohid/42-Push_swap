@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 16:12:38 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/14 20:14:22 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ int	num_validator(char **str, int *arr)
 	i = 0;
 	while (str[i])
 	{
+		if (ft_strlen(str[i]) > 11)
+			return (0);
+		if (str[i][0] == '0' && str[i][1] == '0')
+			return (0);
 		num = ft_atol(str[i]);
 		if (num > INT_MAX || num < INT_MIN)
 			return (0);

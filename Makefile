@@ -6,7 +6,7 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 20:34:16 by sumon             #+#    #+#              #
-#    Updated: 2023/12/10 18:25:51 by msumon           ###   ########.fr        #
+#    Updated: 2023/12/14 19:56:54 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ gnl:
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): libft $(OBJS)
+$(NAME): $(OBJS)
+	make -C libft
 	@$(CC) $(CFLAGS) $(OBJS) $(FTPRINTF)libftprintf.a $(GNL)gnl.a $(LIBFT)libft.a -o $(NAME)
 	@printf "${GREEN}"
 	@echo "╔════════════════════════════════════════════════════╗"
