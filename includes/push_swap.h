@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/12 08:41:32 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/15 10:07:53 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,10 @@ void				sort_stack(t_stack **a, t_stack **b);
 // ****** rules ******
 void				sa(t_stack **a);
 void				sb(t_stack **b);
-void				ss(t_stack **a, t_stack **b);
 void				pa(t_stack **a, t_stack **b);
 void				pb(t_stack **a, t_stack **b);
 void				ra(t_stack **a);
-void				rb(t_stack **b);
-void				rr(t_stack **a, t_stack **b);
 void				rra(t_stack **a);
-void				rrb(t_stack **b);
-void				rrr(t_stack **a, t_stack **b);
 
 // ****** multi_free ******
 void				free_stack(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 00:57:44 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/08 18:16:40 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/15 10:08:51 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,6 @@ void	sa(t_stack **a)
 		(*a)->next->data = temp;
 		write(1, "sa\n", 3);
 	}
-}
-
-void	sb(t_stack **b)
-{
-	sa(b);
-	write(1, "sb\n", 3);
-}
-
-void	ss(t_stack **a, t_stack **b)
-{
-	sa(a);
-	sb(b);
-	write(1, "ss\n", 3);
 }
 
 void	pa(t_stack **a, t_stack **b)
@@ -72,4 +59,41 @@ void	pb(t_stack **a, t_stack **b)
 		*b = temp;
 		write(1, "pb\n", 3);
 	}
+}
+
+void	ra(t_stack **a)
+{
+	t_stack	*temp;
+	t_stack	*last;
+
+	if (*a && (*a)->next)
+	{
+		temp = *a;
+		*a = (*a)->next;
+		(*a)->prev = NULL;
+		last = *a;
+		while (last->next)
+			last = last->next;
+		last->next = temp;
+		temp->prev = last;
+		temp->next = NULL;
+		write(1, "ra\n", 3);
+	}
+}
+
+void	rra(t_stack **a)
+{
+	t_stack	*last;
+	t_stack	*temp;
+
+	if (*a == NULL || (*a)->next == NULL)
+		return ;
+	last = *a;
+	while (last->next->next)
+		last = last->next;
+	temp = last->next;
+	last->next = NULL;
+	temp->next = *a;
+	*a = temp;
+	write(1, "rra\n", 4);
 }

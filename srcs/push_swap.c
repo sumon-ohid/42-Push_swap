@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/14 20:13:01 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/15 10:28:39 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,20 @@ int	digit_sign_check(char *str)
 
 	i = 0;
 	if (!str)
+	{
 		error_msg();
+		return (0);
+	}
 	while (str[i])
 	{
-		if ((str[i] == '+' && ft_isdigit(str[i + 1])) || (str[i] == '-'
-				&& ft_isdigit(str[i + 1])))
-			return (1);
-		if (!(str[i] >= '0' && str[i] <= '9') && str[i] != ' ')
+		if ((str[i] == '+' || str[i] == '-') && (str[i + 1] == '\0'
+				|| !ft_isdigit(str[i + 1])))
+			return (0);
+		if (!ft_isdigit(str[i]) && str[i] != ' ' && str[i] != '+'
+			&& str[i] != '-')
+			return (0);
+		if ((str[i] == '+' || str[i] == '-') && (str[i + 1] == '+'
+				|| str[i + 1] == '-' || !ft_isdigit(str[i + 1])))
 			return (0);
 		i++;
 	}
