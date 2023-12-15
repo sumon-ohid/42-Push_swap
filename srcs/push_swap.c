@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/15 10:41:25 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/15 11:03:13 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	digit_sign_check(char *str)
 	}
 	while (str[i])
 	{
+		if (str[i] == '0' && (str[i - 1] == '+' || str[i - 1] == '-'))
+			return (0);
 		if ((str[i] == '+' || str[i] == '-') && (str[i + 1] == '\0'
 				|| !ft_isdigit(str[i + 1]) || ft_isdigit(str[i - 1])))
 			return (0);
@@ -130,6 +132,8 @@ int	main(int argc, char **argv)
 		if (digit_sign_check(arg_nbr))
 		{
 			a = arg_to_num(arg_nbr);
+			if (!a)
+				free(arg_nbr);
 			sort_args(&a, &b);
 		}
 		else
