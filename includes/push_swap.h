@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/18 20:50:42 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/18 21:20:50 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 // ****** linked list ******
 typedef struct s_stack
 {
-	int 			*arr;
+	int				*arr;
 	int				size;
 	int				len;
 	int				data;

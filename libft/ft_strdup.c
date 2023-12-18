@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:23:29 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/18 20:33:16 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/18 21:20:35 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strdup(const char *s)
 	str = (char *)malloc(len * sizeof(*str));
 	if (!str)
 		return (NULL);
-	while(s[i])
+	while (s[i])
 	{
 		str[i] = s[i];
 		i++;
@@ -31,4 +31,3 @@ char	*ft_strdup(const char *s)
 	str[i] = '\0';
 	return (str);
 }
-
