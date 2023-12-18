@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 08:13:06 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/18 20:01:57 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/18 21:29:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ char	*ft_strchr(const char *s, int c);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char *s1, char const *s2);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s, char c, size_t i, size_t j);
 
 #endif

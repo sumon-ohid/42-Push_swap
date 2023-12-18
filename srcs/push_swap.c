@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/18 21:23:50 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/18 21:29:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_stack	*arg_to_num(char *str)
 		free(str);
 		error_msg();
 	}
-	nbr_list = ft_split(str, ' ');
+	nbr_list = ft_split(str, ' ', 0, 0);
 	if (nbr_list == NULL)
 	{
 		free(str);
