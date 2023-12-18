@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/18 21:00:23 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/18 21:18:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	num_validator(char **str, int *arr)
 	while (str[i])
 	{
 		if (ft_strlen(str[i]) > 11)
+			return (0);
+		if (str[i][0] == '0' && ft_isdigit(str[i][1]))
 			return (0);
 		num = ft_atol(str[i]);
 		if (num > INT_MAX || num < INT_MIN)
