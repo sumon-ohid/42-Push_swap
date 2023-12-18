@@ -6,7 +6,7 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 20:34:16 by sumon             #+#    #+#              #
-#    Updated: 2023/12/15 10:09:22 by msumon           ###   ########.fr        #
+#    Updated: 2023/12/11 18:21:57 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,8 @@ $(NAME): $(OBJS)
 	@echo "║                     Welcome to                     ║"
 	@echo "║                  Push Swap Compiler                ║"
 	@echo "╚════════════════════════════════════════════════════╝"
-	@echo "${BLUE}Compiling: "
-	@for i in $$(seq 0 2 100); do \
-		sleep 0.01; \
-		printf "\033[1;33m#"; \
-	done
-	@printf " 100%%\n"
-	@echo ${GREEN}======== push_swap created! =========
+	@echo "${BLUE}Compiling: ..."
+		@echo ${GREEN}======== push_swap created! =========
 
 clean:
 	@echo ${RED}

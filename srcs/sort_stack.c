@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/12 08:45:47 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 17:06:53 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	sort_stack(t_stack **a, t_stack **b)
 		while (counter)
 		{
 			proxy = *a;
-			if ((proxy->rank & twos))
-				ra(a);
-			else
+			if (!(proxy->rank & twos))
 				pb(a, b);
+			else
+				ra(a);
 			counter--;
 		}
 		while (*b)

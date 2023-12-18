@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 08:13:06 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/15 10:55:13 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 17:18:17 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 long	ft_atol(char *str);
-void	*ft_malloc(size_t size);
 
 #endif

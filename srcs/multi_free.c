@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 08:31:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 17:34:26 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/11 18:34:19 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	free_all(char *str, int *arr, char **nbr_list)
 
 void	error_msg(void)
 {
-	ft_putstr_fd("Error\n", 2);
+	write(2, "Error\n", 6);
 	exit(1);
 }
 
