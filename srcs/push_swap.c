@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 17:34:13 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/18 21:05:50 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,31 @@
 
 char	*make_one_arg(char **argv)
 {
-	char	*one_arg;
 	int		i;
+	char	*arg_nbr;
+	char	*temp;
 
 	i = 1;
-	if (argv[1] == NULL)
-		return (NULL);
-	one_arg = (char *)ft_calloc(sizeof(char), argv_lenght(argv) + 1);
-	if (one_arg == NULL)
+	arg_nbr = ft_strdup("");
+	if (arg_nbr == NULL)
 		error_msg();
 	while (argv[i])
 	{
-		one_arg = ft_strjoin(one_arg, argv[i]);
-		if (one_arg == NULL)
-			return (NULL);
-		one_arg = ft_strjoin(one_arg, " ");
-		if (one_arg == NULL)
-			return (NULL);
+		temp = ft_strjoin(arg_nbr, argv[i]);
+		if (temp == NULL)
+		{
+			free(arg_nbr);
+			error_msg();
+		}
+		arg_nbr = ft_strjoin(temp, " ");
+		if (arg_nbr == NULL)
+		{
+			free(temp);
+			error_msg();
+		}
 		i++;
 	}
-	return (one_arg);
+	return (arg_nbr);
 }
 
 int	digit_sign_check(char *str)
@@ -71,10 +76,17 @@ t_stack	*arg_to_num(char *str)
 	i = 0;
 	arr = (int *)malloc(sizeof(int) * ft_strlen(str));
 	if (arr == NULL)
+	{
+		free(str);
 		error_msg();
+	}
 	nbr_list = ft_split(str, ' ');
 	if (nbr_list == NULL)
+	{
+		free(str);
+		free(arr);
 		error_msg();
+	}
 	while (nbr_list[i])
 	{
 		arr[i] = ft_atoi(nbr_list[i]);
@@ -83,6 +95,8 @@ t_stack	*arg_to_num(char *str)
 	if (num_validator(nbr_list, arr) == 0)
 		free_all(str, arr, nbr_list);
 	a = create_stack(arr, i, 0);
+	if (a == NULL)
+		free_all(str, arr, nbr_list);
 	free(str);
 	free(arr);
 	free_char_list(nbr_list);

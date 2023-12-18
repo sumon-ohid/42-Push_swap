@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:28:31 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 18:20:28 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/18 21:00:23 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ t_stack	*create_stack(int *num, int i, int len)
 	{
 		temp = (t_stack *)malloc(sizeof(t_stack));
 		if (temp == NULL)
-			error_msg();
+		{
+			free_stack(stack_a);
+			return (NULL);
+		}
 		temp->data = num[len];
 		temp->rank = 0;
 		temp->next = NULL;

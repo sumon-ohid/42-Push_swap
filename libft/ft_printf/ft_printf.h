@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 09:03:43 by msumon            #+#    #+#             */
-/*   Updated: 2023/11/28 17:45:54 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/18 19:56:34 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../get_next_line/get_next_line.h"
 # include "../libft.h"
-
 # include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>

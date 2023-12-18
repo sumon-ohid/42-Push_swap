@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 18:19:59 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/18 20:50:42 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 // ****** includes ******
 # include "../libft/ft_printf/ft_printf.h"
-# include "../libft/get_next_line/get_next_line.h"
 # include "../libft/libft.h"
 
 // ****** linked list ******
 typedef struct s_stack
 {
+	int 			*arr;
+	int				size;
+	int				len;
 	int				data;
 	int				rank;
 	struct s_stack	*prev;
