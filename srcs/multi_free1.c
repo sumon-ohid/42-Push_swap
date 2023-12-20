@@ -1,59 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multi_free.c                                       :+:      :+:    :+:   */
+/*   multi_free1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 08:31:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/20 10:49:06 by msumon           ###   ########.fr       */
+/*   Created: 2023/12/20 10:27:06 by msumon            #+#    #+#             */
+/*   Updated: 2023/12/20 10:54:01 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack	*free_stack(t_stack *stack)
-{
-	t_stack	*temp;
-
-	while (stack != NULL)
-	{
-		temp = stack;
-		stack = stack->next;
-		free(temp);
-	}
-	return (NULL);
-}
-
-void	free_char_list(char **nbr_list)
-{
-	int	i;
-
-	i = 0;
-	while (nbr_list[i])
-	{
-		free(nbr_list[i]);
-		i++;
-	}
-	free(nbr_list);
-}
-
-void	free_all(char *str, int *arr, char **nbr_list)
+void	free_str_arr(char *str, int *arr)
 {
 	free(str);
-	free_char_list(nbr_list);
 	free(arr);
 	error_msg();
 }
 
-void	error_msg(void)
+void	free_str_arr_nbr(char *str, int *arr, char **nbr_list)
 {
-	write(2, "Error\n", 6);
-	exit(1);
+	free(str);
+	free_char_list(nbr_list);
+	free(arr);
 }
 
-void	free_void(void *ptr)
+void	free_str(char *str)
 {
-	free(ptr);
+	free(str);
 	error_msg();
 }

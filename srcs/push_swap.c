@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/20 09:27:16 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/20 10:53:08 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,10 @@ t_stack	*arg_to_num(char *str)
 	i = 0;
 	arr = (int *)malloc(sizeof(int) * ft_strlen(str));
 	if (arr == NULL)
-	{
-		free(str);
-		error_msg();
-	}
+		free_str(str);
 	nbr_list = ft_split(str, ' ', 0, 0);
 	if (nbr_list == NULL)
-	{
-		free(str);
-		free(arr);
-		error_msg();
-	}
+		free_str_arr(str, arr);
 	while (nbr_list[i])
 	{
 		arr[i] = ft_atoi(nbr_list[i]);
@@ -99,9 +92,7 @@ t_stack	*arg_to_num(char *str)
 	a = create_stack(arr, i, 0);
 	if (a == NULL)
 		free_all(str, arr, nbr_list);
-	free(str);
-	free(arr);
-	free_char_list(nbr_list);
+	free_str_arr_nbr(str, arr, nbr_list);
 	return (a);
 }
 

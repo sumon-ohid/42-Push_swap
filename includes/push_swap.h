@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:16:33 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/18 21:20:50 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/20 10:53:43 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ void				ra(t_stack **a);
 void				rra(t_stack **a);
 
 // ****** error & free ******
-void				free_stack(t_stack *stack);
+t_stack				*free_stack(t_stack *stack);
 void				free_char_list(char **nbr_list);
 void				free_all(char *str, int *arr, char **nbr_list);
 void				free_void(void *ptr);
+void				free_str_arr(char *str, int *arr);
+void				free_str_arr_nbr(char *str, int *arr, char **nbr_list);
+void				free_str(char *arr);
 void				error_msg(void);
 
 #endif
