@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 01:04:14 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/11 17:06:53 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/20 13:57:31 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_stack	*find_min_node(t_stack *a)
 	current = a;
 	while (current)
 	{
-		if (!current->rank && current->data < min)
+		if (!current->rank && current->data <= min)
 		{
 			min = current->data;
 			min_node = current;
