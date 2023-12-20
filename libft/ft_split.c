@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 07:40:56 by sumon             #+#    #+#             */
-/*   Updated: 2023/12/20 10:24:30 by msumon           ###   ########.fr       */
+/*   Updated: 2023/12/20 11:34:01 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t	ft_counter(char const *s, char c)
 	return (x);
 }
 
-void	ft_free_str(char **str, int j)
+char	**ft_free_str(char **str, int j)
 {
 	int	i;
 
@@ -41,6 +41,18 @@ void	ft_free_str(char **str, int j)
 		free(str[i]);
 		i++;
 	}
+	free(str);
+	return (NULL);
+}
+
+int	k_count(char const *s, int i, char c)
+{
+	int	k;
+
+	k = i;
+	while (s[k] && s[k] != c)
+		k++;
+	return (k);
 }
 
 char	**ft_split(char const *s, char c, size_t i, size_t j)
@@ -55,16 +67,10 @@ char	**ft_split(char const *s, char c, size_t i, size_t j)
 	{
 		if (s[i] != c)
 		{
-			k = i;
-			while (s[k] && s[k] != c)
-				k++;
+			k = k_count(s, i, c);
 			s_split[j] = (char *)malloc(sizeof(char) * (k - i + 1));
 			if (!s_split[j])
-			{
-				ft_free_str(s_split, j);
-				free(s_split);
-				return (NULL);
-			}
+				return (ft_free_str(s_split, j));
 			k = 0;
 			while (s[i] && s[i] != c)
 				s_split[j][k++] = s[i++];
