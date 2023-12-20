@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:17:07 by msumon            #+#    #+#             */
-/*   Updated: 2023/12/18 21:29:14 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/20 09:27:16 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ char	*make_one_arg(char **argv)
 	i = 1;
 	arg_nbr = ft_strdup("");
 	if (arg_nbr == NULL)
-		error_msg();
+		return (NULL);
 	while (argv[i])
 	{
 		temp = ft_strjoin(arg_nbr, argv[i]);
 		if (temp == NULL)
 		{
 			free(arg_nbr);
-			error_msg();
+			return (NULL);
 		}
 		arg_nbr = ft_strjoin(temp, " ");
 		if (arg_nbr == NULL)
 		{
 			free(temp);
-			error_msg();
+			return (NULL);
 		}
 		i++;
 	}
@@ -145,6 +145,8 @@ int	main(int argc, char **argv)
 		if (digit_sign_check(arg_nbr))
 		{
 			a = arg_to_num(arg_nbr);
+			if (!a)
+				free(arg_nbr);
 			sort_args(&a, &b);
 		}
 		else

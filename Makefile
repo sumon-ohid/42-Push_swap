@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
+#    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 20:34:16 by sumon             #+#    #+#              #
-#    Updated: 2023/12/18 19:57:49 by codespace        ###   ########.fr        #
+#    Updated: 2023/12/20 10:25:23 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,7 @@ NAME		= push_swap
 OBJS		= $(SRCS:.c=.o)
 LIBFT		= ./libft/
 FTPRINTF	= ./libft/ft_printf/
-CFLAGS		= -Wall -Werror -Wextra
-
-GREEN		= $(shell tput -Txterm setaf 2)
-BLUE		= $(shell tput -Txterm setaf 4)
-RED 		= $(shell tput -Txterm setaf 1)
+CFLAGS		= -Wall -Werror -Wextra -g
 
 all: libft ft_printf $(NAME)
 
@@ -38,20 +34,19 @@ ft_printf:
 $(NAME): $(OBJS)
 	make -C libft
 	@$(CC) $(CFLAGS) $(OBJS) $(FTPRINTF)libftprintf.a $(LIBFT)libft.a -o $(NAME)
-	@echo ${GREEN}======== push_swap created! =========
+	@echo ======== push_swap created! =========
 
 clean:
-	@echo ${RED}
 	@$(RM) $(OBJS)
 	@$(MAKE) -C $(LIBFT) clean
 	@$(MAKE) -C $(FTPRINTF) clean
-	@echo ${RED}======== Object files removed! ========
+	@echo ======== Object files removed! ========
 
 fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) -C $(LIBFT) fclean
 	@$(MAKE) -C $(FTPRINTF) fclean
-	@echo ${RED}======== push_swap removed! ========
+	@echo ======== push_swap removed! ========
 
 re: fclean all
 

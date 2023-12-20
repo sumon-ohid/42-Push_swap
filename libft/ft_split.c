@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 07:40:56 by sumon             #+#    #+#             */
-/*   Updated: 2023/12/18 21:33:17 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/20 10:24:30 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ static size_t	ft_counter(char const *s, char c)
 	return (x);
 }
 
+void	ft_free_str(char **str, int j)
+{
+	int	i;
+
+	i = 0;
+	while (i <= j)
+	{
+		free(str[i]);
+		i++;
+	}
+}
+
 char	**ft_split(char const *s, char c, size_t i, size_t j)
 {
 	char	**s_split;
@@ -47,8 +59,9 @@ char	**ft_split(char const *s, char c, size_t i, size_t j)
 			while (s[k] && s[k] != c)
 				k++;
 			s_split[j] = (char *)malloc(sizeof(char) * (k - i + 1));
-			if (s_split[j] == NULL)
+			if (!s_split[j])
 			{
+				ft_free_str(s_split, j);
 				free(s_split);
 				return (NULL);
 			}
